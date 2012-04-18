@@ -1,0 +1,9 @@
+    <div class="faq_form_l col">
+        <div class="input_1">{{ faq_form.name }}{{ faq_form.name.errors }}</div>
+        <div class="input_1">{{ faq_form.email }}{{ faq_form.email.errors }}</div>
+    </div>
+    <div class="faq_form_r col">
+        <div class="textarea_1">{{ faq_form.question }}{{ faq_form.question.errors }}</div>
+        <div class="submit"><input type="button" value="Отправить вопрос" id="send_question"/></div>
+        <div class="input_1"><p class="sended"></p></div>
+    </div>

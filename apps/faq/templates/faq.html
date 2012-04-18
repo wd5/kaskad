@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load thumbnail news_extras %}
+
+{% block main %}
+		<div class="col main_l brd_t">
+			<h1>Что-то интересует?</h1>
+			
+			<form class="faq_form" action="" method="post">
+				{% include 'faq/faq_form.html' %}
+			</form>
+			
+			<div class="faqs">
+                {% for question in questions %}
+                    <div class="faq">
+                        <div class="question">
+                            <div class="faq_author">Спрашивает <strong>{{ question.name }}</strong>, {{ question.pub_date|date:"j E Y" }}</div>
+                            <div class="faq_text"><p>{{ question.question }}</p></div>
+                            <div class="question_tail"></div>
+                        </div>
+                        <div class="answer">
+                            {% if question.author %}
+                                <div class="faq_author">Отвечает <strong>{{ question.author }}</strong></div>
+                            {% endif %}
+                            <div class="faq_text"><p>{{ question.answer }}</p></div>
+                            <div class="answer_tail"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+			</div><!--/faqs-->
+		</div><!--/main_l-->
+		
+		<div class="col main_r brd_t">
+			{% get_last_news %}
+		</div><!--/main_r-->
+{% endblock %}
