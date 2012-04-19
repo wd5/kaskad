@@ -27,11 +27,20 @@ STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 ADMIN_MEDIA_ROOT = os.path.join(ROOT_PATH, 'static/admin')
 
+
 SECRET_KEY = 'n56Uidrtu}ig%#hgjh$pbdvwlju7b'
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+)
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+# Put strings here, like "/home/html/static" or "Cwww/django/static".
+# Always use forward slashes, even on Windows.
+# Don't forget to use absolute paths, not relative paths.
+#    ROOT_PATH+"/static",
 )
 
 STATICFILES_FINDERS = (

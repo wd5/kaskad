@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from datetime import date, datetime, timedelta
-
 from django.views.generic import ListView, CreateView, DetailView
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django import http
-from apps.newsboard.models import News, NewsCategory
+from apps.siteblocks.models import News
 
-class NewsListView(ListView):
+class ShowNews(ListView):
     model = News
     paginate_by = 6
 

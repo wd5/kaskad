@@ -17,8 +17,7 @@ INSTALLED_APPS += (
     'apps.siteblocks',
     'apps.pages',
     'apps.faq',
-
-
+    'apps.catalog',
 
     'sorl.thumbnail',
     #'south',

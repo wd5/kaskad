@@ -5,6 +5,7 @@ from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('',
 
+    #url(r'^/news/$', 'siteblocks.views.ShowNews'),
     url(r'^$', 'apps.views.index'),
 
 )

@@ -1,0 +1,31 @@
+msgid "Catalog"
+msgstr "Каталог товаров"
+
+msgid "catalog"
+msgstr "каталог товаров"
+
+msgid "category"
+msgstr "категория"
+
+msgid "categories"
+msgstr "категории"
+
+msgid "product"
+msgstr "товар"
+
+msgid "products"
+msgstr "товары"
+
+msgid "attached_photo"
+msgstr "фотография"
+
+msgid "attached_photos"
+msgstr "фотографии
+
+msgid "comment"
+msgstr "комментарий"
+
+msgid "comments"
+msgstr "комментарии"
+
+

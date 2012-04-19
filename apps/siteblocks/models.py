@@ -65,7 +65,6 @@ def strip_url_title(sender, instance, created, **kwargs):
 
 post_save.connect(strip_url_title, sender=SiteMenu)
 
-
 class Settings(models.Model):
     title = models.CharField(
         verbose_name = u'Название',
@@ -86,3 +85,26 @@ class Settings(models.Model):
     def __unicode__(self):
         return u'%s' % self.name
 
+class News(models.Model):
+    text = models.TextField(
+        verbose_name = u'текст',
+    )
+    is_published = models.BooleanField(
+        verbose_name = u'опубликовано',
+        default = True,
+    )
+    date_add = models.DateTimeField(
+        verbose_name = u'дата создания',
+        default = datetime.datetime.now
+    )
+    # Managers
+    objects = PublishedManager()
+
+    class Meta:
+        ordering = ['-date_add', '-id',]
+        verbose_name =_(u'news_item')
+        verbose_name_plural =_(u'news_items')
+        get_latest_by = 'date_add'
+
+    def __unicode__(self):
+        return u'%s' % self.date_add
