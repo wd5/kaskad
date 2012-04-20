@@ -1,0 +1,1 @@
+window.onload = function(){	jQuery('input[placeholder], textarea[placeholder]').placeholder();}

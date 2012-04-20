@@ -4,7 +4,7 @@ from django import forms
 from apps.utils.widgets import Redactor,RedactorMini
 from sorl.thumbnail.admin import AdminImageMixin
 from mptt.admin import MPTTModelAdmin
-from apps.catalog.models import Category,Product,Attached_photo,Comment
+from apps.catalog.models import Category,Product,Attached_photo,Comment,Feature,FeatureValue
 
 class CategoryAdmin(AdminImageMixin,admin.ModelAdmin):
     list_display = ('id','title','slug','order','is_published',)
@@ -14,15 +14,21 @@ class CategoryAdmin(AdminImageMixin,admin.ModelAdmin):
     search_fields = ('title',)
     raw_id_fields = ('first_related_category','second_related_category',)
 
+class FeatureAdmin(admin.ModelAdmin):
+    list_display = ('id','title','order',)
+    list_display_links = ('id',)
+    list_editable = ('order','title',)
+    search_fields = ('title',)
+
+class FeatureValueInline(admin.TabularInline):
+    model = FeatureValue
+
 class AttachedPhotoInline(AdminImageMixin,admin.TabularInline):
     model = Attached_photo
 
 class ProductAdminForm(forms.ModelForm):
     description = forms.CharField(widget=RedactorMini(attrs={'cols': 100, 'rows': 7}))
-    description.label=u'описание'
-    #!
-    features_table = forms.CharField(widget=RedactorMini(attrs={'cols': 100, 'rows': 7}))
-    features_table.label=u'технические характеристики'
+    description.label=u'Описание'
 
     class Meta:
         model = Product
@@ -34,7 +40,7 @@ class ProductAdmin(AdminImageMixin,admin.ModelAdmin):
     list_filter = ('is_published','price','category',)
     search_fields = ('title','description','price','category__title',)
     raw_id_fields = ('category',)
-    inlines = [AttachedPhotoInline,]
+    inlines = [AttachedPhotoInline,FeatureValueInline]
     form = ProductAdminForm
 
 class CommentAdminForm(forms.ModelForm):
@@ -58,5 +64,6 @@ class CommentAdmin(MPTTModelAdmin):
     list_select_related = True
 
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Feature, FeatureAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Comment, CommentAdmin)

@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+/*6-7*/
+.col, .item_t, .new, .cat_item, .cat_items .price, .left, .center, .items_b .item, .item_img_zm, .cart_item_name, .cart_item_price, .cart_item_qty_btn, .cart_item_sum, .cart_del,
+.right, .menu li, .footer_menu li, .footer_menu, #copyright, .submit, .to_cart {
+	*display:inline;
+	*zoom:1;
+}
+.to_cart {
+	top: 5px;
+}
+.faq_text {
+	height: 65px;
+}
+.cart_item_qty_btn input, .cart_qty_modal_ok, .cart_qty_modal_cancel {
+	border-bottom: 3px solid #c7c7c7;
+}
+.cart_item_qty_btn input:active, .cart_qty_modal_ok:active, .cart_qty_modal_cancel:active {
+	border-bottom: 1px solid #c7c7c7;
+}
+/*6-7*/
+
+
+
+/*6*/
+/*6*/
+

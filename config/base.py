@@ -61,7 +61,7 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
-    #'django.core.context_processors.i18n',
+    'django.core.context_processors.i18n',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.media',
@@ -70,13 +70,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 INSTALLED_APPS = (
     #'admintools_bootstrap',
+    #'admintools_bootstrap',
     'admin_tools',
     'admin_tools.theming',
     'admin_tools.menu',
     'admin_tools.dashboard',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.staticfiles',
+    #'django.contrib.staticfiles',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
@@ -85,6 +86,7 @@ INSTALLED_APPS = (
     'pymorphy',
 )
 
+LANGUAGE_CODE = 'ru-RU'
 PYMORPHY_DICTS = {
     'ru': { 'dir': '/usr/share/pymorphy/ru' },
 }
@@ -98,9 +100,9 @@ TEMPLATE_DIRS = (
 #MPTT_ADMIN_LEVEL_INDENT = 20
 CAPTCHA_NOISE_FUNCTIONS = ()
 
-ADMIN_TOOLS_MENU = 'menu.CustomMenu'
 ADMIN_TOOLS_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'dashboard.CustomAppIndexDashboard'
+ADMIN_TOOLS_MENU = 'menu.CustomMenu'
 
 
 

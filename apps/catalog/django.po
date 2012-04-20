@@ -28,4 +28,14 @@ msgstr "комментарий"
 msgid "comments"
 msgstr "комментарии"
 
+msgid "feature"
+msgstr "характеристика"
 
+msgid "features"
+msgstr "характеристики"
+
+msgid "feature_value"
+msgstr "значение"
+
+msgid "feature_values"
+msgstr "значения"
