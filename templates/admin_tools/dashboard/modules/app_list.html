@@ -19,4 +19,10 @@
             {% endfor %}
         </ul>
         {% endfor %}
+        <h3><a>Загрузить прайс-лист</a></h3>
+            <ul>
+            <li><form action="/admin/upload_pricelist/" method="POST" enctype="multipart/form-data">
+                Выберите файл прайс-листа: <input type="file" name="file" />
+                <input type="submit" value="Загрузить" />
+        </form></li></ul>
 {% endblock %}

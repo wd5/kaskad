@@ -1,0 +1,3 @@
+{% if pricepath and priceupdate %}
+    <div class="price"><a href="/media{{ pricepath }}">Прайс-лист</a><span>обновлен {{ priceupdate|date:"j E Y" }}</span><a href="/media{{ pricepath }}" class="price_lnk"></a></div>
+{% endif %}

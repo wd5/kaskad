@@ -1,0 +1,8 @@
+{% if servicies and basepath %}
+<div class="servicies">
+    <h2>Услуги</h2>
+    {% for item in servicies %}
+        <div class="service"><a href="{{ basepath }}{{ item.get_absolute_url }}">{{ item.title }}</a></div>
+    {% endfor %}
+</div>
+{% endif %}

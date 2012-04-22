@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 
     # Admin
+    (r'^admin/upload_pricelist/$', 'views.upload_pricelist'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin_tools/', include('admin_tools.urls')),
 
@@ -23,3 +24,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += apps_urlpatterns
+
+urlpatterns += patterns('apps.pages.views',
+(r'^(?P<url>.*)$', 'page'),
+)

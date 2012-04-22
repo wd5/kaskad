@@ -1,23 +1,85 @@
 {% extends "base.html" %}
+{% load siteblocks_extras pages_extras %}
 
 {% load thumbnail %}
 
-{% if page.title %}
-    {% block title %}
+{% block title %}
+    {% if page.title %}
         {{ page.title }}
-    {% endblock %}
-{% endif %}
+    {% endif %}
+
+    {% if meta.title %}
+            {% ifnotequal meta.title ''  %}
+                {{ meta.title }}
+            {% else %}
+                ООО «Каскад»
+            {% endifnotequal %}
+    {% endif %}
+{% endblock %}
+
+{% block premain %}
+    {% if maincategory %}
+        <div class="main_t">
+            {% for category in maincategory %}
+                <div class="item_t">
+                    <div class="item_t_img"><img src="{{ category.get_src_image }}" alt="{{ category.title }}" />
+                        {% ifequal category.id 1 %}
+                            <img src="/static/img/kotel_text_zs.png" alt="" class="item_t_title" />
+                        {% endifequal %}
+                        {% ifequal category.id 2 %}
+                            <img src="/static/img/kotel_text_zm.png" alt="" class="item_t_title" />
+                        {% endifequal %}
+                        {% ifequal category.id 3 %}
+                            <img src="/static/img/kotel_text_zl.png" alt="" class="item_t_title" />
+                        {% endifequal %}
+                    </div>
+                    <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                    <p>{{ category.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
 
 {% block center %}
-    <div class="text text_page">
-        {% if page.image %}
-            <p>
-                {% thumbnail page.image "374x252" as  small %}
-                    <img src="{{ small.url }}" width="{{ small.x }}" height="{{ small.y }}" alt="" />
-                {% endthumbnail %}
-            </p>
-        {% endif %}
-        {{ page.content|safe }}
+    {% if catitems %}
+        <div class="cat_items">
+            {% for category in catitems %}
+                <div class="cat_item">
+                    <img src="{{ category.get_src_image }}" alt="Модульные котельные" />
+                    <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                    <p>{{ category.description }}</p>
+                </div>
+            {% endfor %}
+            {% block_price %}
+        </div><!-- /cat_items -->
+    {% endif %}
+{% endblock %}
+
+{% block right %}
+
+    {% comment %}{% block cart %}{% endcomment %}
+
+    <div class="cart">
+        <h3>Ваша корзина пока пуста</h3>
+        <span>Чаще всего показывают <a href="#">котлы для дачи</a></span>
     </div>
+
+    {% block_servicies %}
+
+{% endblock %}
+
+{% block additional %}
+    {% if news %}
+        <div class="news">
+            {% for item in news %}
+            <div class="new">
+                <p><span class="new_date">{{ item.date_add|date:"j E" }}</span>{{ item.text|safe }}</p>
+            </div>
+            {% endfor %}
+            <div class="shutter_t"></div>
+            <div class="shutter_b"></div>
+        </div><!--/news-->
+    {% endif %}
 {% endblock %}
 

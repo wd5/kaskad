@@ -1,48 +1,10 @@
 # -*- coding: utf-8 -*-
-from apps.siteblocks.models import SiteMenu, Settings
+from apps.siteblocks.models import Settings
 from django import template
+from django.conf import settings
+import os.path, time, datetime
 
 register = template.Library()
-
-def get_active_menu(url, site_menu):
-    
-    request_path = url
-    
-    for i, menu_item in enumerate(site_menu):
-        setattr(site_menu[i], 'is_active', False)
-        #if request_path.startswith(menu_item.path):
-            #site_menu[i].is_active = True
-
-
-    for i, menu_item in enumerate(site_menu):
-        setattr(site_menu[i], 'is_active', False)
-        if not menu_item.parent:
-            for menu_subitem in site_menu:
-                # highlight parent menu item
-                if menu_subitem.parent == menu_item and menu_subitem.is_active:
-                    site_menu[i].is_active = True
-        elif menu_item.is_active:
-            for menu_subitem in site_menu:
-                # remove redundant sibling highlight
-                if menu_subitem.parent \
-                     and menu_subitem.parent.path == menu_item.parent.path \
-                     and menu_subitem.path.startswith(menu_item.path) \
-                     and len(menu_subitem.path) > len(menu_item.path) \
-                     and menu_subitem.is_active:
-                        site_menu[i].is_active = False
-    return site_menu
-
-@register.inclusion_tag("siteblocks/block_menu.html")
-def block_menu(url):
-    url = url.split('/')
-
-    if url[1]:
-        current = u'/%s/' % url[1]
-    else:
-        current = u'/'
-    menu = SiteMenu.objects.all()
-    menu = get_active_menu(url, menu)
-    return {'menu': menu, 'current': current}
 
 @register.inclusion_tag("siteblocks/block_setting.html")
 def block_static(name):
@@ -51,3 +13,17 @@ def block_static(name):
     except Settings.DoesNotExist:
         setting = False
     return {'block': block,}
+
+@register.inclusion_tag("siteblocks/block_price.html")
+def block_price():
+    try:
+        pricepath = Settings.objects.get(name = 'pricelistpath').value
+    except Settings.DoesNotExist:
+        pricepath = False
+    if pricepath:
+        path = settings.MEDIA_ROOT + pricepath
+        try:
+            priceupdate = datetime.date.fromtimestamp(os.path.getmtime(path))
+        except OSError:
+            priceupdate = False
+    return {'pricepath': pricepath,'priceupdate': priceupdate,}

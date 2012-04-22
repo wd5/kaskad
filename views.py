@@ -4,6 +4,7 @@ from django import http
 from django.conf import settings
 from django.views.generic.simple import direct_to_template
 from pytils.translit import translify
+from apps.siteblocks.models import Settings
 from django.views.decorators.csrf import csrf_exempt
 try:
     from PIL import Image
@@ -95,3 +96,27 @@ def crop_image_view(request, id_image):
         image.save(name, "JPEG", quality=100)
         return http.HttpResponseRedirect(next)
 '''
+
+def upload_pricelist(request):
+    if request.user.is_staff:
+        if request.method == 'POST':
+            f = request.FILES['file']
+            filename = request.FILES['file'].name
+            name, ext = os.path.splitext(translify(filename).replace(' ', '_'))
+            newname = '/uploads/' + 'pricelist' + ext
+            oldfile = Settings.objects.get(name = 'pricelistpath').value
+            try:
+                os.remove(settings.MEDIA_ROOT + oldfile)
+            except OSError:
+                oldfile = False
+            path_name = settings.MEDIA_ROOT + newname
+            destination = open(path_name, 'wb+')
+            for chunk in f.chunks():
+                destination.write(chunk)
+            destination.close()
+            conf = Settings.objects.get(name = 'pricelistpath')
+            conf.value = newname
+            conf.save()
+            return HttpResponseRedirect('/admin/')
+    else:
+        return HttpResponse('403 Forbidden. Authentication Required!')

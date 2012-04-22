@@ -38,6 +38,9 @@ class PageAdmin(AdminImageMixin, MPTTModelAdmin):
     list_display_links = ('title', 'url',)
     list_editable = ('is_published', 'order',)
     search_fields = ('title', 'url','content',)
+
+    mptt_level_indent = 40
+
     form = PageAdminForm
 
     #prepopulated_fields = {'slug': ('title',)}

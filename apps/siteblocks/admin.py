@@ -11,12 +11,8 @@ class SettingsAdmin(admin.ModelAdmin):
     list_display = ('title','name','value',)
 
 class NewsAdminForm(forms.ModelForm):
-    short_text = forms.CharField(
-        widget=Redactor(attrs={'cols': 170, 'rows': 10}),
-        #label = u'анонс',
-    )
     text = forms.CharField(
-        widget=Redactor(attrs={'cols': 170, 'rows': 30}),
+        widget=RedactorMini(attrs={'cols': 170, 'rows': 30}),
         #label = u'анонс',
     )
     class Meta:
@@ -25,6 +21,7 @@ class NewsAdminForm(forms.ModelForm):
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('date_add', 'is_published',)
     list_filter = ('is_published',)
+    list_editable = ('is_published',)
     form = NewsAdminForm
     date_hierarchy = 'date_add'
 

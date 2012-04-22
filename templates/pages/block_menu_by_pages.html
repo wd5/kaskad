@@ -1,0 +1,34 @@
+{% if pages %}
+    {% ifequal position 'header' %}
+    <div class="menu">
+        <ul>
+            {% for menu in pages %}
+               {% ifequal menu.id 9 %}{% comment %}id #9 - id для страницы "О компании" (/about/){% endcomment %}
+                   <li class="_toright{% ifequal menu.get_absolute_url current %} menu_current{% endifequal %}"><a href="{{ menu.get_absolute_url }}">{{ menu.title }}</a></li>
+               {% else %}
+               {% endifequal %}
+           {% endfor %}
+            <li class="_toright"><a href="/media{{ pricepath }}" class="menu_price" >Прайс-лист</a></li>
+            {% for menu in pages %}
+                {% ifequal menu.id 9 %}
+                {% else %}
+                    <li{% ifequal menu.get_absolute_url current %} class="menu_current"{% endifequal %}><a href="{{ menu.get_absolute_url }}">{{ menu.title }}</a></li>
+                {% endifequal %}
+            {% endfor %}
+        </ul>
+    </div><!--/menu-->
+    {% endifequal %}
+
+    {% ifequal position 'footer' %}
+        <div class="footer_menu">
+                <ul>
+                    {% for menu in pages %}
+                        {% if forloop.last %}
+                            <li><a href="/media{{ pricepath }}">Прайс-лист</a></li>
+                        {% endif %}
+                        <li{% ifequal menu.get_absolute_url current %} class="menu_current"{% endifequal %}><a href="{{ menu.get_absolute_url }}">{{ menu.title }}</a></li>
+                {% endfor %}
+                </ul>
+        </div><!--/footer_menu-->
+    {% endifequal %}
+{% endif %}

@@ -44,6 +44,9 @@ class Category(models.Model):
     def get_second_additional(self):
             return self.second_related_category
 
+    def get_src_image(self):
+            return self.image.url
+
 def image_path_Product(instance, filename):
     return os.path.join('images','products', translify(filename).replace(' ', '_') )
 
