@@ -11,7 +11,7 @@ try:
 except ImportError:
     from config.production import *
 
-
+TEMPLATE_DEBUG = True
 
 INSTALLED_APPS += (
     'apps.siteblocks',

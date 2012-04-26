@@ -50,7 +50,7 @@ def block_menu_by_pages(url,position):
 def block_servicies():
     try:
         allpages = Page.objects.all()
-        servicies = allpages.filter(parent = 1)
+        servicies = allpages.filter(parent = 1,is_published = True)
         basepath = allpages.get(id = 1).url
         return {'servicies': servicies, 'basepath':basepath, }
     except Page.DoesNotExist:

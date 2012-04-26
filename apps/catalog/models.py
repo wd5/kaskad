@@ -10,15 +10,16 @@ from apps.utils.managers import PublishedManager
 from mptt.models import MPTTModel, TreeForeignKey, TreeManager
 
 def image_path_Category(instance, filename):
-    return os.path.join('images','categoty', translify(filename).replace(' ', '_') )
+    return os.path.join('images','category', translify(filename).replace(' ', '_') )
 
 class Category(models.Model):
     title = models.CharField(verbose_name=u'название категории', max_length=150)
     description = models.TextField(verbose_name=u'описание')
     image = ImageField(upload_to=image_path_Category, verbose_name=u'картинка')
+    additionalImage = ImageField(upload_to=image_path_Category, verbose_name=u'каритинка-подпись', blank=True)
     slug = models.SlugField(verbose_name=u'Алиас', help_text=u'уникальное имя на латинице', unique=True)
-    first_related_category = models.ForeignKey('self', verbose_name=u'дополнительная категория 1', related_name='first_additional', blank=True, null=True)
-    second_related_category = models.ForeignKey('self', verbose_name=u'дополнительная категория 2', related_name='second_additional', blank=True, null=True)
+    first_related_category = models.ForeignKey('self', verbose_name=u'дополнительный товар 1', related_name='first_additional', blank=True, null=True)
+    second_related_category = models.ForeignKey('self', verbose_name=u'дополнительный товар 2', related_name='second_additional', blank=True, null=True)
     is_published = models.BooleanField(verbose_name=u'опубликовано', default=True)
     order = models.IntegerField(u'порядок сортировки', help_text=u'Чем больше число, тем выше располагается элемент', default=10)
 
@@ -46,6 +47,9 @@ class Category(models.Model):
 
     def get_src_image(self):
             return self.image.url
+
+    def get_src_additimage(self):
+            return self.additionalImage.url
 
 def image_path_Product(instance, filename):
     return os.path.join('images','products', translify(filename).replace(' ', '_') )

@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-{% load siteblocks_extras pages_extras %}
-
-{% load thumbnail %}
+{% load siteblocks_extras pages_extras thumbnail cache %}
 
 {% block title %}
     {% if page.title %}
@@ -19,25 +17,19 @@
 
 {% block premain %}
     {% if maincategory %}
+        {% cache 3600 maincategories %}
         <div class="main_t">
             {% for category in maincategory %}
                 <div class="item_t">
-                    <div class="item_t_img"><img src="{{ category.get_src_image }}" alt="{{ category.title }}" />
-                        {% ifequal category.id 1 %}
-                            <img src="/static/img/kotel_text_zs.png" alt="" class="item_t_title" />
-                        {% endifequal %}
-                        {% ifequal category.id 2 %}
-                            <img src="/static/img/kotel_text_zm.png" alt="" class="item_t_title" />
-                        {% endifequal %}
-                        {% ifequal category.id 3 %}
-                            <img src="/static/img/kotel_text_zl.png" alt="" class="item_t_title" />
-                        {% endifequal %}
+                    <div class="item_t_img">
+                        <img src="{{ category.get_src_image }}" alt="{{ category.title }}" /><img src="{{ category.get_src_additimage }}" alt="{{ category.title }}" class="item_t_title" />
                     </div>
                     <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
                     <p>{{ category.description }}</p>
                 </div>
             {% endfor %}
         </div>
+        {% endcache %}
     {% endif %}
 {% endblock %}
 

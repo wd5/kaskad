@@ -156,11 +156,11 @@ msgstr "вопросы"
 
 #: apps/pages/__init__.py:2
 msgid "pages"
-msgstr "статичные страницы и тексты"
+msgstr "статичные страницы"
 
 #: apps/pages/__init__.py:3
 msgid "Pages"
-msgstr "Статичные страницы и тексты"
+msgstr "Статичные страницы"
 
 #: apps/pages/models.py:29
 msgid "page_item"
