@@ -12,7 +12,7 @@ class CategoryAdmin(AdminImageMixin,admin.ModelAdmin):
     list_editable = ('order','is_published','slug',)
     list_filter = ('is_published',)
     search_fields = ('title',)
-    raw_id_fields = ('first_related_category','second_related_category',)
+    raw_id_fields = ('first_related_product','second_related_product',)
 
 class FeatureAdmin(admin.ModelAdmin):
     list_display = ('id','title','order',)

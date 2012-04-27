@@ -14,11 +14,10 @@ class Index(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Index,self).get_context_data()
 
-        maincategory = Category.objects.published().filter(id__in=[1,2,3])
-        catitems = Category.objects.published().exclude(id__in=[1,2,3])
-        news = News.objects.published()
-        context['maincategory'] = maincategory
-        context['catitems'] = catitems
+        allcateg = Category.objects.published()
+        news = News.objects.published()[:4]
+        context['maincategory'] = allcateg[:3]
+        context['catitems'] = allcateg[3:]
         context['news'] = news
         return context
 
@@ -35,3 +34,40 @@ def page(request, url):
 @csrf_exempt
 def static_page(request, template):
     return direct_to_template(request, template, locals())
+
+class ShowService(DetailView):
+    slug_field = 'url'
+    model = Page
+    template_name = 'pages/default.html'
+    context_object_name = 'page'
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+
+        pk = self.kwargs.get('pk', None)
+        slug = self.kwargs.get('slug', None)
+        if pk is not None:
+            queryset = queryset.filter(pk=pk)
+
+        elif slug is not None:
+            if not slug.endswith('/'):
+                slug += '/'
+            if not slug.startswith('/'):
+                slug = "/" + slug
+            slug_field = self.get_slug_field()
+            queryset = queryset.filter(**{slug_field: slug})
+
+        else:
+            raise AttributeError(u"Generic detail view %s must be called with "
+                                 u"either an object pk or a slug."
+                                 % self.__class__.__name__)
+
+        try:
+            obj = queryset.get()
+        except ObjectDoesNotExist:
+            raise Http404(_(u"No %(verbose_name)s found matching the query") %
+                          {'verbose_name': queryset.model._meta.verbose_name})
+        return obj
+
+show_service = ShowService.as_view()

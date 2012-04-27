@@ -23,7 +23,10 @@ class Page(MPTTModel):
 
     #@models.permalink
     def get_absolute_url(self):
-        return self.url
+        if self.parent:
+            return self.url[1:]
+        else:
+            return self.url
 
     class Meta:
         verbose_name = _(u'page_item')

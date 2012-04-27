@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load siteblocks_extras pages_extras thumbnail cache pytils_numeral %}
+
+{% block title %}
+    {% if product.title %}
+        {{ product.title }}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+    {% if product %}
+        <div class="product col">
+        <h1>{{ product.title }}</h1>
+        <div class="imgs left">
+            <div class="item_img_zl"><img src="{{ product.get_src_image }}" alt="" height="209px" width="234px" /><div class="item_img_fr_zl"></div></div>
+            <div class="item_img_zm"><img src="static/images/kotel_zm.jpg" alt="" height="109px" width="109px" /><div class="item_img_fr_zm"></div></div>
+            <div class="item_img_zm"><img src="static/images/kotel_zm.jpg" alt="" height="109px" width="109px" /><div class="item_img_fr_zm"></div></div>
+            {% block_price %}
+        </div>
+        <div class="product_des center">
+            <div class="product_name">{{ product.description|safe }}</div>
+            <div class="product_price">
+                <span>{{ product.price }}</span>
+                <div class="to_cart"></div>
+            </div>
+            <table class="product_tech">
+                <caption>Технические характеристики</caption>
+                {% for item in product.get_feature_values %}
+                <tr>
+                    <td>{{ item.feature.title }}</td>
+                    <td>{{ item.value }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% if product.get_comments %}
+            <div class="comments">
+                <h2>Комментарии</h2>
+                <a href="#" class="do_comment">Прокомментировать</a>
+                <div class="comment">
+                    <div class="comment_who">
+                        Владислав <span class="comment_date">23 марта в 16:04</span>
+                    </div>
+                    <p>У меня на даче установлен такой котел. Вот уже вторую зиму стоит. Не могу нарадоваться.</p>
+                    <a href="#" class="comment_answer">Ответить</a>
+                    <div class="comment lvl">
+                        <div class="comment_who">
+                            Отвечает менеджер ООО «Каскад» <span class="comment_date">23 марта в 16:04</span>
+                        </div>
+                        <p>Спасибо, Владислав! Мы рады, что наша продукция приносит вам радость и тепло.</p>
+                        <a href="#" class="comment_answer">Ответить</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div><!-- /product -->
+    {% endif %}
+{% endblock %}
+
+{% block right %}
+    {% include 'siteblocks/cart.html' %}
+    {% block_servicies %}
+{% endblock %}

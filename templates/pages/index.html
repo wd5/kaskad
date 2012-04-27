@@ -17,21 +17,24 @@
 
 {% block premain %}
     {% if maincategory %}
-        {% cache 3600 maincategories %}
         <div class="main_t">
             {% for category in maincategory %}
                 <div class="item_t">
                     <div class="item_t_img">
-                        <img src="{{ category.get_src_image }}" alt="{{ category.title }}" /><img src="{{ category.get_src_additimage }}" alt="{{ category.title }}" class="item_t_title" />
+                        <img src="{{ category.get_src_image }}" alt="{{ category.title }}" />
+                        {% if category.additionalImage %}<img src="{{ category.get_src_additimage }}" alt="{{ category.title }}" class="item_t_title" />{% endif %}
                     </div>
                     <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
                     <p>{{ category.description }}</p>
                 </div>
             {% endfor %}
         </div>
+        {% cache 3600 maincategories %}
         {% endcache %}
     {% endif %}
 {% endblock %}
+
+{% block IndexType %} index{% endblock %}
 
 {% block center %}
     {% if catitems %}
@@ -49,16 +52,8 @@
 {% endblock %}
 
 {% block right %}
-
-    {% comment %}{% block cart %}{% endcomment %}
-
-    <div class="cart">
-        <h3>Ваша корзина пока пуста</h3>
-        <span>Чаще всего показывают <a href="#">котлы для дачи</a></span>
-    </div>
-
+    {% include 'siteblocks/cart.html' %}
     {% block_servicies %}
-
 {% endblock %}
 
 {% block additional %}

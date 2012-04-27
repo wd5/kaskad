@@ -46,10 +46,10 @@ class PageAdmin(AdminImageMixin, MPTTModelAdmin):
     #prepopulated_fields = {'slug': ('title',)}
     list_select_related = True
     form = PageAdminForm
-    inlines = [
-        PageDocInline,
-        PagePicInline,
-    ]
+    #inlines = [
+    #    PageDocInline,
+    #    PagePicInline,
+    #]
 
 class MetaDataAdmin(admin.ModelAdmin):
     list_display=('url', 'title',)

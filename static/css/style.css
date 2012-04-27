@@ -326,6 +326,8 @@ li._toright {
 
 /*cat_items*/
 .cat_items {
+	display: inline-block;
+	vertical-align: top;
 	width: 668px;
 	margin: 20px 0;
 }
@@ -535,7 +537,7 @@ li._toright {
 	background: url('../img/ic_price.png') 18px 50% no-repeat #f2f2f2;
 }
 .index .price {
-	margin: 0 9px;
+	margin: 0 9px 94px;
 }
 .price a {
 	position: relative;
@@ -644,11 +646,8 @@ a.price_lnk {
 	margin-top: 62px;
 }
 .index .right {
-	display: block;
-	position: absolute;
 	left: 672px;
-	top: -18px;
-	margin-top: 20px;
+	margin: 20px 0 96px;
 }
 .cart {
 	width: 200px;

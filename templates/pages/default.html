@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 
-{% load thumbnail siteblocks_extras %}
+{% load thumbnail siteblocks_extras pages_extras %}
 
 {% if page.title %}
     {% block title %}
         {{ page.title }}
     {% endblock %}
 {% endif %}
+
+{% block center %}
+    <div class="text col">
+    {{ page.content|safe }}
+    </div><!-- /text -->
+{% endblock %}
+
+{% block right %}
+    {% include 'siteblocks/cart.html' %}
+    {% block_servicies %}
+{% endblock %}
 

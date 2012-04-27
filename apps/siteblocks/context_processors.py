@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from apps.siteblocks.models import Settings
 from settings import SITE_NAME
-import datetime
 
 def settings(request):
     try:
@@ -32,7 +31,6 @@ def settings(request):
                 'shuttertext':shuttertext,
                 'address': address,
                 'site_name': SITE_NAME,
-                'year':datetime.datetime.now(),
             }
     else:
         return {
@@ -41,6 +39,5 @@ def settings(request):
                 'shuttertext':'',
                 'address': '',
                 'site_name': SITE_NAME,
-                'year':datetime.datetime.now(),
             }
 

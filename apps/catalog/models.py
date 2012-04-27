@@ -18,8 +18,8 @@ class Category(models.Model):
     image = ImageField(upload_to=image_path_Category, verbose_name=u'картинка')
     additionalImage = ImageField(upload_to=image_path_Category, verbose_name=u'каритинка-подпись', blank=True)
     slug = models.SlugField(verbose_name=u'Алиас', help_text=u'уникальное имя на латинице', unique=True)
-    first_related_category = models.ForeignKey('self', verbose_name=u'дополнительный товар 1', related_name='first_additional', blank=True, null=True)
-    second_related_category = models.ForeignKey('self', verbose_name=u'дополнительный товар 2', related_name='second_additional', blank=True, null=True)
+    first_related_product = models.ForeignKey('Product', verbose_name=u'дополнительный товар 1', related_name='first_additional', blank=True, null=True)
+    second_related_product = models.ForeignKey('Product', verbose_name=u'дополнительный товар 2', related_name='second_additional', blank=True, null=True)
     is_published = models.BooleanField(verbose_name=u'опубликовано', default=True)
     order = models.IntegerField(u'порядок сортировки', help_text=u'Чем больше число, тем выше располагается элемент', default=10)
 
@@ -36,20 +36,20 @@ class Category(models.Model):
     def get_absolute_url(self):
         return u'/catalog/%s/' % self.slug
 
-    def get_articles(self):
+    def get_products(self):
         return self.product_set.all()
 
     def get_first_additional(self):
-            return self.first_related_category
+        return self.first_related_product
 
     def get_second_additional(self):
-            return self.second_related_category
+        return self.second_related_product
 
     def get_src_image(self):
-            return self.image.url
+        return self.image.url
 
     def get_src_additimage(self):
-            return self.additionalImage.url
+        return self.additionalImage.url
 
 def image_path_Product(instance, filename):
     return os.path.join('images','products', translify(filename).replace(' ', '_') )
@@ -77,11 +77,31 @@ class Product(models.Model):
     def get_absolute_url(self):
         return u'%s%s/' % (self.category.get_absolute_url(),self.slug)
 
+    def get_src_image(self):
+        return self.image.url
+
     def get_attached_photos(self):
         return self.attached_photo_set.all()
 
+    def get_feature_values(self):
+            return self.featurevalue_set.all()
+
     def get_comments(self):
-            return self.comment_set.all()
+        return self.comment_set.all()
+
+    def save(self, force_insert=False, force_update=False, using=None):
+
+        if self.slug=='':
+            nextid = Product.objects.all().latest(field_name='id')
+            self.slug = nextid.id + 1
+
+        if force_insert and force_update:
+            raise ValueError("Cannot force both insert and updating in model saving.")
+        self.save_base(using=using, force_insert=force_insert, force_update=force_update)
+
+    save.alters_data = True
+
+
 
 class Feature(models.Model):
     title = models.CharField(verbose_name=u'название характеристики', max_length=255)

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load siteblocks_extras pages_extras thumbnail cache %}
+
+{% block title %}
+    {% if page.title %}
+        {{ page.title }}
+    {% endif %}
+    {% if meta.title %}
+        {% ifnotequal meta.title ''  %}
+            {{ meta.title }}
+        {% else %}
+            ООО «Каскад»
+        {% endifnotequal %}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+    {% if news %}
+        <div class="col">
+        <h1>Новости</h1>
+            <div class="comments">
+                {% for item in news %}
+                    <div class="comment">
+                        <span class="comment_date">{{ item.date_add|date:"j E" }} в {{ item.date_add|date:"G:i" }}</span>
+                        <p>{{ item.text|safe }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block right %}
+    {% include 'siteblocks/cart.html' %}
+    {% block_price %}
+    {% block_servicies %}
+{% endblock %}

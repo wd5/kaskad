@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load siteblocks_extras pages_extras thumbnail cache pytils_numeral %}
+
+{% block title %}
+    {% if category.title %}
+        {{ category.title }}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+    {% if category %}
+    <div class="categories col">
+        <h1>{{ category.title }}</h1>
+        <div class="category left">
+            <div class="category_img"><img src="{{ category.get_src_image }}" alt="{{ category.title }}" /></div>
+            <p>{{ category.description }}</p>
+            {% block_price %}
+        </div>
+
+        <div class="items center">
+            {% if products %}
+                {% for product in products %}
+                    <div class="item">
+                        <div class="item_img"><img src="{{ product.get_src_image }}" alt="{{ product.title }}" height="87px" width="87px" /><div class="item_img_fr"></div></div>
+                        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                        <p>{{ product.description|safe }}</p>
+                        <span class="kol_comment">{{ product.get_comments.count }} коментари{{ product.get_comments.count|choose_plural:"й,я,ев" }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div><!-- /categories -->
+    {% endif %}
+
+{% endblock %}
+
+{% block right %}
+    {% include 'siteblocks/cart.html' %}
+    {% block_servicies %}
+{% endblock %}
+
+{% block additional %}
+    {% if category and category.first_related_product or category.second_related_product %}
+        <div class="items_b">
+            <h2>Другое оборудование</h2>
+            {% if category.first_related_product %}
+                <div class="item">
+                    <div class="item_img"><img src="{{ category.first_related_product.get_src_image }}" alt="" height="87px" width="87px" /><div class="item_img_fr"></div></div>
+                    <a href="{{ category.first_related_product.get_absolute_url }}">{{ category.first_related_product.title }}</a>
+                    <p>{{ category.first_related_product.description|safe }}</p>
+                    <span class="kol_comment">{{ category.first_related_product.get_comments.count }} коментари{{ category.first_related_product.get_comments.count|choose_plural:"й,я,ев" }}</span>
+                </div>
+            {% endif %}
+            {% if category.second_related_product %}
+                <div class="item">
+                    <div class="item_img"><img src="{{ category.second_related_product.get_src_image }}" alt="" height="87px" width="87px" /><div class="item_img_fr"></div></div>
+                    <a href="{{ category.second_related_product.get_absolute_url }}">{{ category.second_related_product.title }}</a>
+                    <p>{{ category.second_related_product.description|safe }}</p>
+                    <span class="kol_comment">{{ category.second_related_product.get_comments.count }} коментари{{ category.second_related_product.get_comments.count|choose_plural:"й,я,ев" }}</span>
+                </div>
+        {% endif %}
+        </div><!-- /items_b -->
+    {% endif %}
+{% endblock %}
+
+{{ category }}
+{{ products }}

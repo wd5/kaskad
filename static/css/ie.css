@@ -2,7 +2,7 @@
 
 /*6-7*/
 .col, .item_t, .new, .cat_item, .cat_items .price, .left, .center, .items_b .item, .item_img_zm, .cart_item_name, .cart_item_price, .cart_item_qty_btn, .cart_item_sum, .cart_del,
-.right, .menu li, .footer_menu li, .footer_menu, #copyright, .submit, .to_cart {
+.right, .menu li, .footer_menu li, .footer_menu, #copyright, .submit, .to_cart, .cat_items {
 	*display:inline;
 	*zoom:1;
 }
