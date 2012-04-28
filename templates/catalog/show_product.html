@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load siteblocks_extras pages_extras thumbnail cache pytils_numeral %}
+{% load siteblocks_extras pages_extras thumbnail cache pytils_numeral mptt_tags %}
 
 {% block title %}
     {% if product.title %}
@@ -12,17 +12,30 @@
         <div class="product col">
         <h1>{{ product.title }}</h1>
         <div class="imgs left">
-            <div class="item_img_zl"><img src="{{ product.get_src_image }}" alt="" height="209px" width="234px" /><div class="item_img_fr_zl"></div></div>
-            <div class="item_img_zm"><img src="static/images/kotel_zm.jpg" alt="" height="109px" width="109px" /><div class="item_img_fr_zm"></div></div>
-            <div class="item_img_zm"><img src="static/images/kotel_zm.jpg" alt="" height="109px" width="109px" /><div class="item_img_fr_zm"></div></div>
+
+            <a class="fancybox" rel="album{{product.id}}" href="{{ product.image.url }}">
+                <div class="item_img_zl"><img src="{{ product.get_src_image }}" alt="" height="209px" width="234px" /><div class="item_img_fr_zl"></div></div>
+            </a>
+            {% if product.get_attached_photos %}
+                {% for photo in product.get_attached_photos %}
+                <div class="item_img_zm">
+                    <a class="fancybox" rel="album{{product.id}}" href="{{ photo.image.url }}">
+                        <img src="{{ photo.get_src_image }}" alt="" height="109px" width="109px" />
+                    </a>
+                    <div class="item_img_fr_zm"></div>
+                </div>
+                {% endfor %}
+            {% endif %}
+
             {% block_price %}
         </div>
         <div class="product_des center">
             <div class="product_name">{{ product.description|safe }}</div>
             <div class="product_price">
-                <span>{{ product.price }}</span>
+                <span>{{ product.get_str_price }}</span>
                 <div class="to_cart"></div>
             </div>
+            {% if product.get_feature_values %}
             <table class="product_tech">
                 <caption>Технические характеристики</caption>
                 {% for item in product.get_feature_values %}
@@ -32,26 +45,32 @@
                 </tr>
                 {% endfor %}
             </table>
-            {% if product.get_comments %}
+            {% endif %}
+
+            {% if comments %}
             <div class="comments">
                 <h2>Комментарии</h2>
                 <a href="#" class="do_comment">Прокомментировать</a>
-                <div class="comment">
-                    <div class="comment_who">
-                        Владислав <span class="comment_date">23 марта в 16:04</span>
-                    </div>
-                    <p>У меня на даче установлен такой котел. Вот уже вторую зиму стоит. Не могу нарадоваться.</p>
-                    <a href="#" class="comment_answer">Ответить</a>
-                    <div class="comment lvl">
+                {% recursetree comments %}
+                    <div class="comment">
+
                         <div class="comment_who">
-                            Отвечает менеджер ООО «Каскад» <span class="comment_date">23 марта в 16:04</span>
+                            {{ node.sender_name }} <span class="comment_date">{{ node.date_create|date:"j E" }} в {{ node.date_create|date:"H:i" }}</span>
                         </div>
-                        <p>Спасибо, Владислав! Мы рады, что наша продукция приносит вам радость и тепло.</p>
+                        <p>{{ node.text }}</p>
                         <a href="#" class="comment_answer">Ответить</a>
+
+                        {% if not node.is_leaf_node %}
+                            <div class="comment lvl">
+                                {{ children }}
+                            </div>
+                        {% endif %}
+
                     </div>
-                </div>
+                {% endrecursetree %}
             </div>
             {% endif %}
+
         </div>
     </div><!-- /product -->
     {% endif %}

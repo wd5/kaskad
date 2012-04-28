@@ -39,3 +39,9 @@ msgstr "значение"
 
 msgid "feature_values"
 msgstr "значения"
+
+msgid "review"
+msgstr "отзыв"
+
+msgid "reviews"
+msgstr "отзывы"

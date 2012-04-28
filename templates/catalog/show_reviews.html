@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load siteblocks_extras pages_extras thumbnail cache %}
+
+{% block title %}
+    {% if page.title %}
+        {{ page.title }}
+    {% endif %}
+    {% if meta.title %}
+        {% ifnotequal meta.title ''  %}
+            {{ meta.title }}
+        {% else %}
+            ООО «Каскад»
+        {% endifnotequal %}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+        <div class="col">
+            <div class="faq">
+                <form action="" method="POST" class="form_faq">
+                    <div class="input">{{ form.sender_name }}</div>
+                    <div class="textarea">{{ form.text }}</div>
+                    <div class="submit">
+                        <input type="submit" value="Оставить отзыв">
+                    </div>
+                </form>
+            </div>
+        <h2>Отзывы</h2>
+            {% if reviews %}
+            <div class="comments">
+                {% for item in reviews %}
+                    <div class="comment">
+                        <div class="comment_who">
+                            {{ item.sender_name }} <span class="comment_date">{{ item.date_create|date:"j E" }} в {{ item.date_create|date:"H:i" }}</span>
+                        </div>
+                        <p>{{ item.text }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+{% endblock %}
+
+{% block right %}
+    {% include 'siteblocks/cart.html' %}
+    {% block_servicies %}
+{% endblock %}

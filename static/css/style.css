@@ -673,6 +673,7 @@ a.price_lnk {
 .category_img {
 	overflow: visible;
 	margin: 10px 0 -40px;
+	min-height: 140px;
 }
 .category_img img {
 	max-width: 300px;

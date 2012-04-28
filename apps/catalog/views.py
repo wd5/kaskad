@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from apps.catalog.models import Product,Category
-from django.views.generic import ListView,DetailView,TemplateView
-
+from apps.catalog.models import Product,Category,Review
+from django.views.generic import DetailView,ListView,CreateView
+from apps.catalog.forms import ReviewForm
+from django.shortcuts import redirect
 
 class ShowCategory(DetailView):
     model = Category
@@ -26,5 +27,31 @@ class ShowProduct(DetailView):
     template_name = 'catalog/show_product.html'
     context_object_name = 'product'
 
+    def get_context_data(self, **kwargs):
+        context = kwargs
+        context_object_name = self.get_context_object_name(self.object)
+
+        context['comments'] = self.object.get_comments()
+
+        if context_object_name:
+            context[context_object_name] = self.object
+        return context
+
 show_product = ShowProduct.as_view()
 
+class ShowReviews(CreateView):
+    form_class = ReviewForm
+    template_name = 'catalog/show_reviews.html'
+    context_object_name = 'form'
+    succes_url = '/reviews/'
+
+    def form_valid(self, form):
+        Review.objects.create(**form.cleaned_data)
+        return redirect(self.get_success_url())
+
+    def get_context_data(self, **kwargs):
+        context = super(ShowReviews, self).get_context_data(**kwargs)
+        context['reviews'] = Review.objects.filter(is_moderated=True)
+        return context
+
+reviews_list = ShowReviews.as_view()

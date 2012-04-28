@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load thumbnail siteblocks_extras pages_extras %}
+
+{% if page.title %}
+    {% block title %}
+        Статьи
+    {% endblock %}
+{% endif %}
+
+{% block center %}
+    {% if listpages %}
+    <div class="col">
+        <h1>Статьи</h1>
+        {% for item in listpages %}
+            <div class="service"><a href="{{ basepath }}{{ item.get_absolute_url }}">{{ item.title }}</a></div>
+        {% endfor %}
+    </div><!-- /text -->
+    {% endif %}
+{% endblock %}
+
+{% block right %}
+    {% include 'siteblocks/cart.html' %}
+    {% block_servicies %}
+{% endblock %}

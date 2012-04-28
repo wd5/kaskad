@@ -54,6 +54,24 @@ class Category(models.Model):
 def image_path_Product(instance, filename):
     return os.path.join('images','products', translify(filename).replace(' ', '_') )
 
+def str_price(price):
+    if not price:
+        return u'0'
+    value = u'%s' %price
+    if price._isinteger():
+        value = u'%s' %value[:len(value)-3]
+        count = 3
+    else:
+        count = 6
+
+    if len(value)>count:
+        ends = value[len(value)-count:]
+        starts = value[:len(value)-count]
+
+        return u'%s %s' %(starts, ends)
+    else:
+        return value
+
 class Product(models.Model):
     category = models.ForeignKey(Category, verbose_name=u'категория')
     title = models.CharField(verbose_name=u'название товара', max_length=150)
@@ -74,6 +92,9 @@ class Product(models.Model):
         verbose_name = _(u'product')
         verbose_name_plural = _(u'products')
 
+    def get_str_price(self):
+        return str_price(self.price)
+
     def get_absolute_url(self):
         return u'%s%s/' % (self.category.get_absolute_url(),self.slug)
 
@@ -87,7 +108,7 @@ class Product(models.Model):
             return self.featurevalue_set.all()
 
     def get_comments(self):
-        return self.comment_set.all()
+        return self.comment_set.filter(is_moderated=True)
 
     def save(self, force_insert=False, force_update=False, using=None):
 
@@ -140,6 +161,9 @@ class Attached_photo(models.Model):
         verbose_name = _(u'attached_photo')
         verbose_name_plural = _(u'attached_photos')
 
+    def get_src_image(self):
+        return self.image.url
+
 class Comment(MPTTModel):
     product = models.ForeignKey(Product, verbose_name=u'товар')
     parent = TreeForeignKey('self', verbose_name=u'родительский комментарий', related_name='children', blank=True, null=True)
@@ -148,7 +172,6 @@ class Comment(MPTTModel):
     date_create = models.DateTimeField(u'дата комментария', default=datetime.datetime.now)
     text = models.TextField(verbose_name=u'текст комментария')
     is_moderated = models.BooleanField(verbose_name=u'публиковать комментарий', default=False)
-    is_review = models.BooleanField(verbose_name=u'в отзывах', default=False)
 
     objects = TreeManager()
 
@@ -162,3 +185,17 @@ class Comment(MPTTModel):
 
     def __unicode__(self):
         return u'%s - %s' % (self.sender_name,self.date_create)
+
+class Review(models.Model):
+    sender_name = models.CharField(verbose_name=u'имя отправителя', max_length=60)
+    date_create = models.DateTimeField(u'дата отзыва', default=datetime.datetime.now)
+    text = models.TextField(verbose_name=u'текст отзыва')
+    is_moderated = models.BooleanField(verbose_name=u'публиковать отзыв', default=False)
+
+    def __unicode__(self):
+        return u'Отзыв от %s' % self.date_create
+
+    class Meta:
+        verbose_name =_(u'review')
+        verbose_name_plural =_(u'reviews')
+        ordering = ['-date_create']

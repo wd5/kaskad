@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load thumbnail siteblocks_extras pages_extras %}
+
+{% block title %}
+    {% if meta.title %}
+        {% ifnotequal meta.title ''  %}
+            {{ meta.title }}
+        {% endifnotequal %}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+    <div class="col">
+    <h2>Хотите что-то спросить?</h2>
+        <div class="faq">
+            <form action="" method="POST" class="form_faq">
+                <div class="input">{{ form.name }}</div>
+                <div class="input">{{ form.email }}</div>
+                <div class="textarea">{{ form.question }}</div>
+                <div class="submit">
+                    <input type="submit" value="Спросить">
+                </div>
+            </form>
+        </div>
+
+        {% if questions %}
+            <div class="comments">
+                {% for question in questions %}
+                <div class="comment">
+
+                    <div class="comment_cur">
+                        <div class="comment_who">
+                        {{ question.name }} <span class="comment_date">{{ question.pub_date|date:"j E" }} в {{ question.pub_date|date:"H:i" }}</span>
+                        </div>
+                        <p>{{ question.question }}</p>
+                    </div>
+
+                    {% if question.answer %}
+                    <div class="comment lvl">
+                        <div class="comment_who">
+                            {{ question.author }} <span class="comment_date">{{ question.ans_date|date:"j E" }} в {{ question.ans_date|date:"H:i" }}</span>
+                        </div>
+                        <p>{{ question.answer }}</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+
+            </div>
+        {% endif %}
+
+    </div><!-- /text -->
+{% endblock %}
+
+{% block right %}
+    {% include 'siteblocks/cart.html' %}
+    {% block_price %}
+    {% block_servicies %}
+{% endblock %}
