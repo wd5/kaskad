@@ -167,7 +167,7 @@ class Attached_photo(models.Model):
 class Comment(MPTTModel):
     product = models.ForeignKey(Product, verbose_name=u'товар')
     parent = TreeForeignKey('self', verbose_name=u'родительский комментарий', related_name='children', blank=True, null=True)
-    order = models.IntegerField(u'порядок сортировки', help_text=u'Чем больше число, тем выше располагается элемент', blank=True)
+    order = models.IntegerField(u'порядок сортировки', help_text=u'Чем больше число, тем ниже располагается элемент', blank=True)
     sender_name = models.CharField(verbose_name=u'имя отправителя', max_length=60)
     date_create = models.DateTimeField(u'дата комментария', default=datetime.datetime.now)
     text = models.TextField(verbose_name=u'текст комментария')

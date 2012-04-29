@@ -223,11 +223,11 @@ li._toright {
 }
 /*ring onclick*/
 .shutter:hover {
-	padding: 18px;
+	/*padding: 18px;*/
 
 }
 .shutter:hover .shutter_text {
-	height: 100%;
+	/*height: 100%;*/
 }
 .shutter_text {
 	overflow: hidden;

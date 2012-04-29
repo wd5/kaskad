@@ -58,8 +58,9 @@
                             {{ node.sender_name }} <span class="comment_date">{{ node.date_create|date:"j E" }} в {{ node.date_create|date:"H:i" }}</span>
                         </div>
                         <p>{{ node.text }}</p>
-                        <a href="#" class="comment_answer">Ответить</a>
-
+                        {% ifnotequal node.level 2  %}
+                            <a href="#" class="comment_answer">Ответить</a>
+                        {% endifnotequal %}
                         {% if not node.is_leaf_node %}
                             <div class="comment lvl">
                                 {{ children }}

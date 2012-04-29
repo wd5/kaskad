@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from settings import DATABASE_NAME
-DEBUG = True
+DEBUG = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
