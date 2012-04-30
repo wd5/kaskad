@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     url(r'^catalog/(?P<slug>[^/]+)/$', 'apps.catalog.views.show_category'),
     url(r'^catalog/[^/]+/(?P<slug>[^/]+)/$', 'apps.catalog.views.show_product'),
 
+    url(r'^do_comment/$', 'apps.catalog.views.do_comment'),
+
     url(r'^services/$', 'apps.pages.views.show_services'),
     url(r'^services/(?P<slug>[^/]+)/$', 'apps.pages.views.show_service'),
 

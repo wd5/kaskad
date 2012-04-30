@@ -13,16 +13,26 @@
         <h1>{{ product.title }}</h1>
         <div class="imgs left">
 
-            <a class="fancybox" rel="album{{product.id}}" href="{{ product.image.url }}">
-                <div class="item_img_zl"><img src="{{ product.get_src_image }}" alt="" height="209px" width="234px" /><div class="item_img_fr_zl"></div></div>
-            </a>
+            {% thumbnail product.image "234x209" as im %}
+                <a class="fancybox" rel="album{{product.id}}" href="{{ product.image.url }}">
+                    <div class="item_img_zl">
+                        <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
+                        <div class="item_img_fr_zl"></div>
+                    </div>
+                </a>
+            {% endthumbnail %}
+
             {% if product.get_attached_photos %}
                 {% for photo in product.get_attached_photos %}
-                <div class="item_img_zm">
+
+                    {% thumbnail product.image "109x109" crop="center" as im %}
                     <a class="fancybox" rel="album{{product.id}}" href="{{ photo.image.url }}">
-                        <img src="{{ photo.get_src_image }}" alt="" height="109px" width="109px" />
+                        <div class="item_img_zm">
+                        <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
+                        <div class="item_img_fr_zm"></div>
                     </a>
-                    <div class="item_img_fr_zm"></div>
+                    {% endthumbnail %}
+
                 </div>
                 {% endfor %}
             {% endif %}
@@ -49,8 +59,8 @@
 
             {% if comments %}
             <div class="comments">
-                <h2>Комментарии</h2>
-                <a href="#" class="do_comment">Прокомментировать</a>
+                <h2>Комментарии</h2> <!-- fancybox.iframe -->
+                <a href="/do_comment/" class="do_comment">Прокомментировать</a>
                 {% recursetree comments %}
                     <div class="comment">
 

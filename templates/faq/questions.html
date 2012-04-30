@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load thumbnail siteblocks_extras pages_extras %}
+{% load thumbnail pagination_tags siteblocks_extras pages_extras %}
 
 {% block title %}
     {% if meta.title %}
@@ -26,6 +26,7 @@
 
         {% if questions %}
             <div class="comments">
+                {% autopaginate questions 1 %}
                 {% for question in questions %}
                 <div class="comment">
 
@@ -47,7 +48,7 @@
 
                 </div>
                 {% endfor %}
-
+                {% paginate %}
             </div>
         {% endif %}
 

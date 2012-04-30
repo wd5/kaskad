@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load siteblocks_extras pages_extras thumbnail cache %}
+{% load siteblocks_extras pagination_tags pages_extras thumbnail cache %}
 
 {% block title %}
     {% if page.title %}
@@ -19,12 +19,14 @@
         <div class="col">
         <h1>Новости</h1>
             <div class="comments">
+                {% autopaginate news 1 %}
                 {% for item in news %}
                     <div class="comment">
                         <span class="comment_date">{{ item.date_add|date:"j E" }} в {{ item.date_add|date:"G:i" }}</span>
                         <p>{{ item.text|safe }}</p>
                     </div>
                 {% endfor %}
+                {% paginate %}
             </div>
         </div>
     {% endif %}

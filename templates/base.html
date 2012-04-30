@@ -13,11 +13,7 @@
     <script type="text/javascript" src="/static/js/script.js"></script>
     <title>
         {% block title %}
-            {% if meta.title %}
-                {% ifnotequal meta.title ''  %}
-                    {{ meta.title }}
-                {% endifnotequal %}
-            {% endif %}
+            {{ meta.title|default:"Каскад" }}
         {% endblock %}
 
     </title>
@@ -44,8 +40,8 @@
         {% block_menu_by_pages request.path 'header' %}
 
 		<div class="shutter">
-			<div class="shutter_text">{{ shuttertext }}</div>
-			<div class="shutter_b"></div>
+            <div class="shutter_text">{{ shuttertext }}</div>
+            <div class="shutter_b"></div>
 			<div class="shutter_ring"></div>
 		</div>
 	</div>

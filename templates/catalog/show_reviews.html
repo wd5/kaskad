@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load siteblocks_extras pages_extras thumbnail cache %}
+{% load siteblocks_extras pagination_tags pages_extras thumbnail cache %}
 
 {% block title %}
     {% if page.title %}
@@ -28,6 +28,7 @@
         <h2>Отзывы</h2>
             {% if reviews %}
             <div class="comments">
+                {% autopaginate reviews 1 %}
                 {% for item in reviews %}
                     <div class="comment">
                         <div class="comment_who">
@@ -36,6 +37,7 @@
                         <p>{{ item.text }}</p>
                     </div>
                 {% endfor %}
+                {% paginate %}
             </div>
             {% endif %}
         </div>

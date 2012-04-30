@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load thumbnail siteblocks_extras pages_extras %}
+{% load thumbnail pagination_tags siteblocks_extras pages_extras %}
 
 {% if page.title %}
     {% block title %}
@@ -12,9 +12,13 @@
     {% if listpages %}
     <div class="col">
         <h1>Статьи</h1>
+        {% autopaginate listpages 1 %}
         {% for item in listpages %}
+
             <div class="service"><a href="{{ basepath }}{{ item.get_absolute_url }}">{{ item.title }}</a></div>
+
         {% endfor %}
+        {% paginate %}
     </div><!-- /text -->
     {% endif %}
 {% endblock %}

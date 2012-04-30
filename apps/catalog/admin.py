@@ -15,10 +15,11 @@ class CategoryAdmin(AdminImageMixin,admin.ModelAdmin):
     raw_id_fields = ('first_related_product','second_related_product',)
 
 class FeatureAdmin(admin.ModelAdmin):
-    list_display = ('id','title','order',)
+    list_display = ('id','title')
     list_display_links = ('id',)
-    list_editable = ('order','title',)
+    list_editable = ('title',)
     search_fields = ('title',)
+    fields = ('title',)
 
 class FeatureValueInline(admin.TabularInline):
     model = FeatureValue
@@ -56,7 +57,7 @@ class CommentAdminForm(forms.ModelForm):
         model = Comment
 
 class CommentAdmin(MPTTModelAdmin):
-    list_display = ('id','sender_name','date_create','is_moderated',)
+    list_display = ('id','sender_name','date_create','order','is_moderated',)
     list_display_links = ('id','sender_name','date_create',)
     list_editable = ('is_moderated',)
     list_filter = ('is_moderated','sender_name','date_create',)

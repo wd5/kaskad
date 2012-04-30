@@ -54,6 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'pagination.middleware.PaginationMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -81,6 +82,7 @@ INSTALLED_APPS = (
     'mptt',
     'pytils',
     'pymorphy',
+    'pagination',
 )
 
 LANGUAGE_CODE = 'ru-RU'

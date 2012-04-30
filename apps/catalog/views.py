@@ -2,7 +2,7 @@
 
 from apps.catalog.models import Product,Category,Review
 from django.views.generic import DetailView,ListView,CreateView
-from apps.catalog.forms import ReviewForm
+from apps.catalog.forms import ReviewForm,CommentForm
 from django.shortcuts import redirect
 
 class ShowCategory(DetailView):
@@ -55,3 +55,17 @@ class ShowReviews(CreateView):
         return context
 
 reviews_list = ShowReviews.as_view()
+
+class DoComment(CreateView):
+    form_class = CommentForm
+    template_name = 'catalog/do_comment.html'
+    context_object_name = 'form'
+
+    def form_valid(self, form):
+        Review.objects.create(**form.cleaned_data)
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        return self.request.path
+
+do_comment = DoComment.as_view()
