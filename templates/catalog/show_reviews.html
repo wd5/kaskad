@@ -17,18 +17,24 @@
 {% block center %}
         <div class="col">
             <div class="faq">
-                <form action="" method="POST" class="form_faq">
-                    <div class="input">{{ form.sender_name }}</div>
-                    <div class="textarea">{{ form.text }}</div>
-                    <div class="submit">
-                        <input type="submit" value="Оставить отзыв">
-                    </div>
-                </form>
+                {% if is_successed %}
+                    Благодарим за оставленный отзыв. Отзыв будет опубликован, после того как пройдет модерацию.
+                {% else %}
+                    <form action="" method="POST" class="form_faq">
+                        <div class="input">{{ form.sender_name }}{{ form.sender_name.errors }}</div>
+                        <div class="input">{{ form.email }}{{ form.email.errors }}</div>
+                        <div class="textarea">{{ form.text }}{{ form.text.errors }}</div>
+                        <div class="submit">
+                            <div><input type="submit" value="Оставить отзыв" /></div>
+                        </div>
+                    </form>
+                {% endif %}
+
             </div>
         <h2>Отзывы</h2>
             {% if reviews %}
             <div class="comments">
-                {% autopaginate reviews 1 %}
+                {% autopaginate reviews 10 %}
                 {% for item in reviews %}
                     <div class="comment">
                         <div class="comment_who">

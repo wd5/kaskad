@@ -1,8 +1,10 @@
-<h2>Прокомментировать</h2>
-<form action="" method="POST" class="form_faq">
-    <div class="input">{{ form.sender_name }}</div>
-    <div class="textarea">{{ form.text }}</div>
+{% if id_product %}
+<form class="mod_form" method="POST" action="{{ request.path }}">
+    <div class="input"><label>Имя</label>{{ form.sender_name }}</div>
+    <div class="input"><label>E-mail</label>{{ form.email }}</div>
+    <div class="textarea"><label>Текст комментария</label>{{ form.text }}</div>
     <div class="submit">
-        <input type="submit" value="Отправить">
+        <div><input type="submit" value="Спросить" /></div>
     </div>
 </form>
+{% endif %}

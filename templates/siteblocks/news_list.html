@@ -19,7 +19,7 @@
         <div class="col">
         <h1>Новости</h1>
             <div class="comments">
-                {% autopaginate news 1 %}
+                {% autopaginate news 10 %}
                 {% for item in news %}
                     <div class="comment">
                         <span class="comment_date">{{ item.date_add|date:"j E" }} в {{ item.date_add|date:"G:i" }}</span>

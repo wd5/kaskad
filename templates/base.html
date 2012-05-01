@@ -26,6 +26,14 @@
 <!--PAGE-->
 <div class="page">
 
+{% block shutterhide %}
+    <script type="text/javascript">
+        $(function(){
+            $('.shutter_text').hide();
+            });
+    </script>
+{% endblock %}
+
     <!--HEADER-->
 	<div class="header">
 		<a id="logo_box" href="/" title="Каскад"><img id="logo" src="/static/img/logo.png" alt="Каскад" width="233" height="42" /></a>

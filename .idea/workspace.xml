@@ -2,23 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ce8e9c6-0b1f-4ce7-a314-29f30ee5059e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/catalog/do_comment.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/pagination/pagination.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/orders/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/orders/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/orders/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/orders/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/utils/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Верстка/modal_form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Верстка/static/img/pipes.png" afterPath="$PROJECT_DIR$/Верстка/static/img/pipes.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/catalog/admin.py" afterPath="$PROJECT_DIR$/apps/catalog/admin.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/catalog/forms.py" afterPath="$PROJECT_DIR$/apps/catalog/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/catalog/models.py" afterPath="$PROJECT_DIR$/apps/catalog/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/catalog/views.py" afterPath="$PROJECT_DIR$/apps/catalog/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/faq/forms.py" afterPath="$PROJECT_DIR$/apps/faq/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/faq/views.py" afterPath="$PROJECT_DIR$/apps/faq/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/urls.py" afterPath="$PROJECT_DIR$/apps/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/base.py" afterPath="$PROJECT_DIR$/config/base.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/development.py" afterPath="$PROJECT_DIR$/config/development.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/static/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/script.js" afterPath="$PROJECT_DIR$/static/js/script.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/catalog/do_comment.html" afterPath="$PROJECT_DIR$/templates/catalog/do_comment.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/catalog/show_category.html" afterPath="$PROJECT_DIR$/templates/catalog/show_category.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/catalog/show_product.html" afterPath="$PROJECT_DIR$/templates/catalog/show_product.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/catalog/show_reviews.html" afterPath="$PROJECT_DIR$/templates/catalog/show_reviews.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/faq/questions.html" afterPath="$PROJECT_DIR$/templates/faq/questions.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pages/articles_list.html" afterPath="$PROJECT_DIR$/templates/pages/articles_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pages/index.html" afterPath="$PROJECT_DIR$/templates/pages/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/siteblocks/news_list.html" afterPath="$PROJECT_DIR$/templates/siteblocks/news_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Верстка/cart.html" afterPath="$PROJECT_DIR$/Верстка/cart.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Верстка/faq.html" afterPath="$PROJECT_DIR$/Верстка/faq.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Верстка/index.html" afterPath="$PROJECT_DIR$/Верстка/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Верстка/news.html" afterPath="$PROJECT_DIR$/Верстка/news.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Верстка/static/css/ie.css" afterPath="$PROJECT_DIR$/Верстка/static/css/ie.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Верстка/static/css/style.css" afterPath="$PROJECT_DIR$/Верстка/static/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Верстка/text-page.html" afterPath="$PROJECT_DIR$/Верстка/text-page.html" />
     </list>
     <ignored path="kaskad.iws" />
@@ -43,40 +58,48 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/js/script.js">
+          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/catalog/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="58" column="5" selection-start="1460" selection-end="1460" vertical-scroll-proportion="0.0">
+                <state line="15" column="72" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0">
                   <folding>
-                    <element signature="n#!!block;n#SlideShutterDown#0" expanded="false" />
-                    <element signature="n#!!block;n#SlideShutterUp#0" expanded="false" />
+                    <element signature="e#24#79#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/static/css/style.css">
+          <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$USER_HOME$/Загрузки/orders/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="223" column="14" selection-start="4497" selection-end="4497" vertical-scroll-proportion="0.41416568">
+                <state line="17" column="13" selection-start="483" selection-end="483" vertical-scroll-proportion="0.12605043">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="do_comment.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/catalog/do_comment.html">
+          <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="7" column="7" selection-start="266" selection-end="266" vertical-scroll-proportion="-4.375">
+                <state line="18" column="15" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/apps/catalog/models.py">
+          <file leaf-file-name="fields.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file:///usr/local/lib/python2.7/dist-packages/sorl_thumbnail-11.12-py2.7.egg/sorl/thumbnail/fields.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="173" column="24" selection-start="6583" selection-end="6583" vertical-scroll-proportion="0.0">
+                <state line="19" column="43" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="files.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file:///usr/local/lib/python2.7/dist-packages/django/db/models/fields/files.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="211" column="6" selection-start="7803" selection-end="7803" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -85,10 +108,8 @@
           <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/catalog/forms.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="41" selection-start="878" selection-end="878" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="e#24#48#0" expanded="true" />
-                  </folding>
+                <state line="5" column="39" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -100,7 +121,7 @@
           <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/urls.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="57" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
+                <state line="19" column="21" selection-start="694" selection-end="704" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -109,18 +130,18 @@
           <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/catalog/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="43" column="39" selection-start="1308" selection-end="1308" vertical-scroll-proportion="0.0">
+                <state line="72" column="8" selection-start="2302" selection-end="2302" vertical-scroll-proportion="0.0">
                   <folding>
-                    <element signature="e#25#80#0" expanded="true" />
+                    <element signature="e#25#88#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="show_reviews.html" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/templates/catalog/show_reviews.html">
+          <file leaf-file-name="do_comment.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/catalog/do_comment.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="21" column="39" selection-start="627" selection-end="627" vertical-scroll-proportion="0.3893696">
+                <state line="1" column="63" selection-start="83" selection-end="83" vertical-scroll-proportion="-0.625">
                   <folding />
                 </state>
               </provider>
@@ -129,7 +150,36 @@
           <file leaf-file-name="show_product.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/catalog/show_product.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="39" column="29" selection-start="1477" selection-end="1477" vertical-scroll-proportion="-15.0">
+                <state line="47" column="82" selection-start="1810" selection-end="1810" vertical-scroll-proportion="-18.208334">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/apps/orders/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="8" column="0" selection-start="263" selection-end="263" vertical-scroll-proportion="0.14833127">
+                  <folding>
+                    <element signature="e#24#79#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/orders/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/orders/urls.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -150,30 +200,30 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/urls.py" />
+        <option value="$PROJECT_DIR$/apps/faq/forms.py" />
         <option value="$PROJECT_DIR$/apps/catalog/forms.py" />
-        <option value="$PROJECT_DIR$/Верстка/text-page.html" />
-        <option value="$PROJECT_DIR$/apps/catalog/views.py" />
-        <option value="$PROJECT_DIR$/templates/catalog/show_product.html" />
-        <option value="$PROJECT_DIR$/apps/catalog/admin.py" />
-        <option value="$PROJECT_DIR$/static/css/style.css" />
-        <option value="$PROJECT_DIR$/static/js/script.js" />
-        <option value="$PROJECT_DIR$/config/base.py" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/templates/catalog/do_comment.html" />
-        <option value="$PROJECT_DIR$/templates/pagination/pagination.html" />
-        <option value="$PROJECT_DIR$/templates/pages/articles_list.html" />
-        <option value="$PROJECT_DIR$/templates/faq/questions.html" />
-        <option value="$PROJECT_DIR$/templates/siteblocks/news_list.html" />
+        <option value="$PROJECT_DIR$/apps/utils/views.py" />
+        <option value="$PROJECT_DIR$/templates/catalog/show_category.html" />
         <option value="$PROJECT_DIR$/templates/catalog/show_reviews.html" />
+        <option value="$PROJECT_DIR$/apps/urls.py" />
+        <option value="$PROJECT_DIR$/templates/faq/questions.html" />
+        <option value="$PROJECT_DIR$/apps/faq/views.py" />
+        <option value="$PROJECT_DIR$/templates/catalog/do_comment.html" />
+        <option value="$PROJECT_DIR$/apps/catalog/views.py" />
+        <option value="$PROJECT_DIR$/apps/catalog/models.py" />
+        <option value="$PROJECT_DIR$/templates/catalog/show_product.html" />
+        <option value="$PROJECT_DIR$/apps/orders/urls.py" />
+        <option value="$PROJECT_DIR$/apps/orders/views.py" />
+        <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/apps/orders/models.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
+    <option name="x" value="-8" />
     <option name="y" value="24" />
-    <option name="width" value="1922" />
-    <option name="height" value="1033" />
+    <option name="width" value="1936" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -229,52 +279,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskad" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskad" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskad" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskad" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskad" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskad" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="apps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -293,7 +297,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="catalog" />
+              <option name="myItemId" value="orders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -314,11 +318,11 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -530,25 +534,6 @@
       <option name="MULTIPROCESS" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <module name="kaskad" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -568,6 +553,25 @@
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="kaskad" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -679,7 +683,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="24" width="1922" height="1033" extended-state="6" />
+    <frame x="-8" y="24" width="1936" height="1040" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -687,7 +691,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32914287" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16363636" sideWeight="0.44" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16791444" sideWeight="0.67085713" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17005348" sideWeight="0.67085713" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44342858" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1459893" sideWeight="0.32685715" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -760,121 +764,120 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/base.py">
+    <entry file="file://$PROJECT_DIR$/apps/faq/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="18" selection-start="2011" selection-end="2011" vertical-scroll-proportion="0.20072992">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="12" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.27812114">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/catalog/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="17" selection-start="766" selection-end="766" vertical-scroll-proportion="0.23049645">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="57" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/catalog/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="39" selection-start="1308" selection-end="1308" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#25#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pagination/pagination.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="33" selection-start="587" selection-end="587" vertical-scroll-proportion="0.4264524">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/faq/questions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="21" selection-start="307" selection-end="307" vertical-scroll-proportion="0.24103832">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/siteblocks/news_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="25" selection-start="443" selection-end="443" vertical-scroll-proportion="0.33374536">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/catalog/do_comment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="7" selection-start="266" selection-end="266" vertical-scroll-proportion="-4.375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/catalog/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="24" selection-start="6583" selection-end="6583" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pages/articles_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="184" selection-end="184" vertical-scroll-proportion="0.16423358">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/catalog/show_product.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="29" selection-start="1477" selection-end="1477" vertical-scroll-proportion="-15.0">
+        <state line="7" column="60" selection-start="379" selection-end="379" vertical-scroll-proportion="0.108043216">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/catalog/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="41" selection-start="878" selection-end="878" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#24#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="5" selection-start="1460" selection-end="1460" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!block;n#SlideShutterDown#0" expanded="false" />
-            <element signature="n#!!block;n#SlideShutterUp#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/catalog/show_reviews.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="39" selection-start="627" selection-end="627" vertical-scroll-proportion="0.3893696">
+        <state line="5" column="39" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/style.css">
+    <entry file="file://$PROJECT_DIR$/apps/utils/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="223" column="14" selection-start="4497" selection-end="4497" vertical-scroll-proportion="0.41416568">
+        <state line="5" column="12" selection-start="122" selection-end="122" vertical-scroll-proportion="0.088652484">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="21" selection-start="694" selection-end="704" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/catalog/do_comment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="63" selection-start="83" selection-end="83" vertical-scroll-proportion="-0.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/catalog/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="8" selection-start="2302" selection-end="2302" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#25#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/db/models/fields/files.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="211" column="6" selection-start="7803" selection-end="7803" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/sorl_thumbnail-11.12-py2.7.egg/sorl/thumbnail/fields.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="43" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/catalog/show_product.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="82" selection-start="1810" selection-end="1810" vertical-scroll-proportion="-18.208334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/orders/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/orders/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="15" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/catalog/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="72" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/orders/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="263" selection-end="263" vertical-scroll-proportion="0.14833127">
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Загрузки/orders/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="483" selection-end="483" vertical-scroll-proportion="0.12605043">
           <folding />
         </state>
       </provider>

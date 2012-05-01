@@ -12,7 +12,7 @@
     {% if listpages %}
     <div class="col">
         <h1>Статьи</h1>
-        {% autopaginate listpages 1 %}
+        {% autopaginate listpages 10 %}
         {% for item in listpages %}
 
             <div class="service"><a href="{{ basepath }}{{ item.get_absolute_url }}">{{ item.title }}</a></div>

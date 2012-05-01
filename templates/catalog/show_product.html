@@ -13,29 +13,67 @@
         <h1>{{ product.title }}</h1>
         <div class="imgs left">
 
-            {% thumbnail product.image "234x209" as im %}
-                <a class="fancybox" rel="album{{product.id}}" href="{{ product.image.url }}">
+        {% if product.image.width > 1000 %}
+
+            {% thumbnail product.image "1000" as big %}
+                {% thumbnail product.image "234x209" crop="center" as im %}
+                <a class="fancybox" rel="album{{product.id}}" href="{{ big.url }}">
                     <div class="item_img_zl">
                         <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
                         <div class="item_img_fr_zl"></div>
                     </div>
                 </a>
+                 {% endthumbnail %}
             {% endthumbnail %}
+
+        {% else %}
+
+            {% thumbnail product.image "234x209" crop="center" as im %}
+            <a class="fancybox" rel="album{{product.id}}" href="{{ product.image.url }}">
+                <div class="item_img_zl">
+                    <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
+                    <div class="item_img_fr_zl"></div>
+                </div>
+            </a>
+            {% endthumbnail %}
+
+        {% endif %}
 
             {% if product.get_attached_photos %}
                 {% for photo in product.get_attached_photos %}
 
-                    {% thumbnail product.image "109x109" crop="center" as im %}
+                {% if photo.image.width > 1000 %}
+                    {% thumbnail photo.image "1000" as big %}
+                        {% thumbnail photo.image "109x109" crop="center" as im %}
+                        <a class="fancybox" rel="album{{product.id}}" href="{{ big.url }}">
+                            <div class="item_img_zm">
+                                <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
+                                <div class="item_img_fr_zm"></div>
+                            </div>
+                        </a>
+                        {% endthumbnail %}
+                    {% endthumbnail %}
+
+                {% else %}
+
+                    {% thumbnail photo.image "109x109" crop="center" as im %}
                     <a class="fancybox" rel="album{{product.id}}" href="{{ photo.image.url }}">
                         <div class="item_img_zm">
-                        <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
-                        <div class="item_img_fr_zm"></div>
+                            <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
+                            <div class="item_img_fr_zm"></div>
+                        </div>
                     </a>
                     {% endthumbnail %}
 
-                </div>
+                {% endif %}
+
+
+
+
                 {% endfor %}
             {% endif %}
+
+
 
             {% block_price %}
         </div>
@@ -60,7 +98,7 @@
             {% if comments %}
             <div class="comments">
                 <h2>Комментарии</h2> <!-- fancybox.iframe -->
-                <a href="/do_comment/" class="do_comment">Прокомментировать</a>
+                <a href="/do_comment/{{ product.id }}/" class="do_comment">Прокомментировать</a>
                 {% recursetree comments %}
                     <div class="comment">
 

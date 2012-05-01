@@ -4,10 +4,13 @@ from django.db import models
 import datetime
 import os
 from pytils.translit import translify
-from sorl.thumbnail import ImageField
+from sorl.thumbnail import ImageField as sorl_ImageField
 from django.db.models.signals import post_save
 from apps.utils.managers import PublishedManager
 from mptt.models import MPTTModel, TreeForeignKey, TreeManager
+
+class ImageField(models.ImageField, sorl_ImageField):
+    pass
 
 def image_path_Category(instance, filename):
     return os.path.join('images','category', translify(filename).replace(' ', '_') )
@@ -37,13 +40,21 @@ class Category(models.Model):
         return u'/catalog/%s/' % self.slug
 
     def get_products(self):
-        return self.product_set.all()
+        return self.product_set.published()
 
     def get_first_additional(self):
-        return self.first_related_product
+        product = self.first_related_product
+        if product.is_published == False:
+            return False
+        else:
+            return product
 
     def get_second_additional(self):
-        return self.second_related_product
+        product = self.second_related_product
+        if product.is_published == False:
+            return False
+        else:
+            return product
 
     def get_src_image(self):
         return self.image.url
@@ -171,6 +182,7 @@ class Comment(MPTTModel):
     sender_name = models.CharField(verbose_name=u'имя отправителя', max_length=60)
     date_create = models.DateTimeField(u'дата комментария', default=datetime.datetime.now)
     text = models.TextField(verbose_name=u'текст комментария')
+    email = models.CharField(verbose_name=u'E-mail',max_length=75)
     is_moderated = models.BooleanField(verbose_name=u'публиковать комментарий', default=False)
 
     objects = TreeManager()
@@ -190,6 +202,7 @@ class Review(models.Model):
     sender_name = models.CharField(verbose_name=u'имя отправителя', max_length=60)
     date_create = models.DateTimeField(u'дата отзыва', default=datetime.datetime.now)
     text = models.TextField(verbose_name=u'текст отзыва')
+    email = models.CharField(verbose_name=u'E-mail',max_length=75)
     is_moderated = models.BooleanField(verbose_name=u'публиковать отзыв', default=False)
 
     def __unicode__(self):

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from apps.catalog.models import Product,Category,Review
+from apps.catalog.models import Product,Category,Review,Comment
 from django.views.generic import DetailView,ListView,CreateView
 from apps.catalog.forms import ReviewForm,CommentForm
-from django.shortcuts import redirect
+from apps.utils.views import CreateViewMixin
+from django.shortcuts import redirect,render_to_response
 
 class ShowCategory(DetailView):
     model = Category
@@ -39,11 +40,11 @@ class ShowProduct(DetailView):
 
 show_product = ShowProduct.as_view()
 
-class ShowReviews(CreateView):
+class ShowReviews(CreateViewMixin,CreateView):
     form_class = ReviewForm
     template_name = 'catalog/show_reviews.html'
     context_object_name = 'form'
-    succes_url = '/reviews/'
+    success_url = '/reviews/thanks/'
 
     def form_valid(self, form):
         Review.objects.create(**form.cleaned_data)
@@ -51,21 +52,34 @@ class ShowReviews(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(ShowReviews, self).get_context_data(**kwargs)
+        if self.kwargs.get('action',None)=='thanks':
+            context['is_successed'] = True
+        else:
+            context['is_successed'] = False
         context['reviews'] = Review.objects.filter(is_moderated=True)
         return context
 
 reviews_list = ShowReviews.as_view()
 
-class DoComment(CreateView):
+class DoComment(CreateViewMixin,CreateView):
     form_class = CommentForm
     template_name = 'catalog/do_comment.html'
     context_object_name = 'form'
 
     def form_valid(self, form):
-        Review.objects.create(**form.cleaned_data)
+        #Comment.objects.create(**form.cleaned_data)
         return redirect(self.get_success_url())
 
-    def get_success_url(self):
-        return self.request.path
+    def get_success_url(self, **kwargs):
+        current_product = Product.objects.get(id=self.kwargs.get('id',False))
+        url = current_product.get_absolute_url()
+        return url
+
+    def get_context_data(self, **kwargs):
+        context = super(DoComment, self).get_context_data(**kwargs)
+        current_product = Product.objects.get(id=self.kwargs.get('id',False))
+        context['id_product'] = current_product.id
+
+        return context
 
 do_comment = DoComment.as_view()

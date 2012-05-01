@@ -12,21 +12,26 @@
 
 {% block center %}
     <div class="col">
+
+    {% if is_successed %}
+        Спасибо за вопрос, мы постараемся ответить на него в самое ближайшее время!
+    {% else %}
     <h2>Хотите что-то спросить?</h2>
         <div class="faq">
             <form action="" method="POST" class="form_faq">
-                <div class="input">{{ form.name }}</div>
-                <div class="input">{{ form.email }}</div>
-                <div class="textarea">{{ form.question }}</div>
+                <div class="input">{{ form.name }}{{ form.name.errors }}</div>
+                <div class="input">{{ form.email }}{{ form.email.errors }}</div>
+                <div class="textarea">{{ form.question }}{{ form.question.errors }}</div>
                 <div class="submit">
-                    <input type="submit" value="Спросить">
+                    <div><input type="submit" value="Спросить" /></div>
                 </div>
             </form>
         </div>
+    {% endif %}
 
         {% if questions %}
             <div class="comments">
-                {% autopaginate questions 1 %}
+                {% autopaginate questions 10 %}
                 {% for question in questions %}
                 <div class="comment">
 
