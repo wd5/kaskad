@@ -13,21 +13,16 @@ $(function(){
         }
     );
 
-    $('.do_comment').click(function(){
-        $('.mod_form').slideDown();
-        $('div.comment').fadeOut();
-    });
-
-    $('h2').click(function(){
-        $('div.comment').fadeIn();
-        $('.mod_form').slideUp();
-    });
+    $('.do_comment').toggle(
+        function(){
+            $('.mod_form').slideDown();
+        },
+        function(){
+            $('.mod_form').slideUp();
+        }
+    );
 
     $('input[value="Отправить"]').click(function(){
-
-
-
-
 
         //alert($('input[name="sender_name"]').val());
 
@@ -37,8 +32,8 @@ $(function(){
 
 function hideForm()
     {$('.mod_form').hide();
-    $('div.comment').show();}
+    }
 
 function showForm()
     {$('.mod_form').show();
-    $('div.comment').hide();}
+    }

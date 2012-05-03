@@ -69,11 +69,9 @@ class DoComment(CreateViewMixin,CreateView):
     context_object_name = 'form'
 
     def form_valid(self, form, **kwargs):
-        #Comment.objects.create(**form.cleaned_data)
         instance = form.save(commit=False)
         product = Product.objects.get(id=self.kwargs.get('id',False))
-        instance.product = product.id
-        # А теперь можно сохранить в базу
+        instance.product = product
         instance.save()
         return redirect(self.get_success_url())
 
