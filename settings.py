@@ -18,7 +18,7 @@ INSTALLED_APPS += (
     'apps.pages',
     'apps.faq',
     'apps.catalog',
-    'apps.orders',
+    #'apps.orders',
 
     'sorl.thumbnail',
     #'south',

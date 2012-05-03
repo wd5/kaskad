@@ -67,13 +67,8 @@
 
                 {% endif %}
 
-
-
-
                 {% endfor %}
             {% endif %}
-
-
 
             {% block_price %}
         </div>
@@ -97,8 +92,18 @@
 
             {% if comments %}
             <div class="comments">
-                <h2>Комментарии</h2> <!-- fancybox.iframe -->
-                <a href="/do_comment/{{ product.id }}/" class="do_comment">Прокомментировать</a>
+                <h2>Комментарии</h2>
+                <a class="do_comment">Прокомментировать</a>
+
+                <form class="mod_form" method="POST" action="">
+                    <div class="input"><label>Имя</label>{{ form.sender_name }}{{ form.sender_name.errors }}</div>
+                    <div class="input"><label>E-mail</label>{{ form.email }}{{ form.email.errors }}</div>
+                    <div class="textarea"><label>Текст комментария</label>{{ form.text }}{{ form.text.errors }}</div>
+                    <div class="submit">
+                        <div><input type="submit" value="Отправить" /></div>
+                    </div>
+                </form>
+
                 {% recursetree comments %}
                     <div class="comment">
 
@@ -117,8 +122,21 @@
 
                     </div>
                 {% endrecursetree %}
+
+            {{ excomments }}
+
+                {% if form.errors %}
+                    <script type="text/javascript">showForm();</script>
+                {% else %}
+                    <script type="text/javascript">hideForm();</script>
+                {% endif %}
+
             </div>
             {% endif %}
+
+
+
+
 
         </div>
     </div><!-- /product -->

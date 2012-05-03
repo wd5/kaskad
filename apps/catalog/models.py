@@ -8,6 +8,7 @@ from sorl.thumbnail import ImageField as sorl_ImageField
 from django.db.models.signals import post_save
 from apps.utils.managers import PublishedManager
 from mptt.models import MPTTModel, TreeForeignKey, TreeManager
+from django.db.models import Max
 
 class ImageField(models.ImageField, sorl_ImageField):
     pass
@@ -178,7 +179,7 @@ class Attached_photo(models.Model):
 class Comment(MPTTModel):
     product = models.ForeignKey(Product, verbose_name=u'товар')
     parent = TreeForeignKey('self', verbose_name=u'родительский комментарий', related_name='children', blank=True, null=True)
-    order = models.IntegerField(u'порядок сортировки', help_text=u'Чем больше число, тем ниже располагается элемент', blank=True)
+    order = models.IntegerField(u'порядок сортировки', help_text=u'Чем больше число, тем ниже располагается элемент', blank=True, null=True)
     sender_name = models.CharField(verbose_name=u'имя отправителя', max_length=60)
     date_create = models.DateTimeField(u'дата комментария', default=datetime.datetime.now)
     text = models.TextField(verbose_name=u'текст комментария')
@@ -193,10 +194,29 @@ class Comment(MPTTModel):
         ordering = ['-order']
 
     class MPTTMeta:
-            order_insertion_by = ['order']
+        order_insertion_by = ['order']
 
     def __unicode__(self):
         return u'%s - %s' % (self.sender_name,self.date_create)
+
+    '''def save(self, *args, **kwargs):
+        if not self.order:
+            self.order = 10
+        super(Comment, self).save(*args, **kwargs)'''
+
+def create_comment(sender, instance, created, **kwargs):
+    if created:
+        product_comments = Product.objects.get(id=instance.product.id).comment_set.all()
+        if instance.parent:
+            aggregate = product_comments.filter(parent=instance.parent).aggregate(Max('order'))
+            maxOrder = aggregate['order__max']
+            instance.order = maxOrder + 1
+        else:
+            aggregate = product_comments.filter(parent__isnull=True).aggregate(Max('order'))
+            maxOrder = aggregate['order__max']
+            instance.order = maxOrder + 1
+post_save.connect(create_comment, sender=Comment)
+
 
 class Review(models.Model):
     sender_name = models.CharField(verbose_name=u'имя отправителя', max_length=60)

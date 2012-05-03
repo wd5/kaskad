@@ -5,6 +5,7 @@ from django.views.generic import DetailView,ListView,CreateView
 from apps.catalog.forms import ReviewForm,CommentForm
 from apps.utils.views import CreateViewMixin
 from django.shortcuts import redirect,render_to_response
+from django.db.models import Max
 
 class ShowCategory(DetailView):
     model = Category
@@ -38,7 +39,7 @@ class ShowProduct(DetailView):
             context[context_object_name] = self.object
         return context
 
-show_product = ShowProduct.as_view()
+#show_product = ShowProduct.as_view()
 
 class ShowReviews(CreateViewMixin,CreateView):
     form_class = ReviewForm
@@ -63,11 +64,17 @@ reviews_list = ShowReviews.as_view()
 
 class DoComment(CreateViewMixin,CreateView):
     form_class = CommentForm
-    template_name = 'catalog/do_comment.html'
+    template_name = 'catalog/show_product.html'
+    #template_name = 'catalog/do_comment.html'
     context_object_name = 'form'
 
-    def form_valid(self, form):
+    def form_valid(self, form, **kwargs):
         #Comment.objects.create(**form.cleaned_data)
+        instance = form.save(commit=False)
+        product = Product.objects.get(id=self.kwargs.get('id',False))
+        instance.product = product.id
+        # А теперь можно сохранить в базу
+        instance.save()
         return redirect(self.get_success_url())
 
     def get_success_url(self, **kwargs):
@@ -77,9 +84,11 @@ class DoComment(CreateViewMixin,CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(DoComment, self).get_context_data(**kwargs)
+
         current_product = Product.objects.get(id=self.kwargs.get('id',False))
-        context['id_product'] = current_product.id
+        context['product'] = current_product
+        context['comments'] = current_product.get_comments()
 
         return context
 
-do_comment = DoComment.as_view()
+show_product = DoComment.as_view()

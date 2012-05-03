@@ -57,10 +57,10 @@ class CommentAdminForm(forms.ModelForm):
         model = Comment
 
 class CommentAdmin(MPTTModelAdmin):
-    list_display = ('id','sender_name','date_create','order','is_moderated',)
+    list_display = ('id','product','sender_name','date_create','text','order','is_moderated',)
     list_display_links = ('id','sender_name','date_create',)
     list_editable = ('is_moderated',)
-    list_filter = ('is_moderated','sender_name','date_create',)
+    list_filter = ('is_moderated','sender_name','date_create','product',)
     search_fields = ('product__title','text','sender_name',)
     list_select_related = True
 
