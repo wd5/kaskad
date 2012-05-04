@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     url(r'^articles/$', 'apps.pages.views.show_articles'),
     url(r'^articles/(?P<slug>[^/]+)/$', 'apps.pages.views.show_article'),
 
+    url(r'^ajax/$','apps.catalog.views.example')
+
 )
 #url(r'^captcha/', include('captcha.urls')),
 

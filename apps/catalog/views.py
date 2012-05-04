@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from apps.catalog.models import Product,Category,Review,Comment
-from django.views.generic import DetailView,ListView,CreateView
+from django.views.generic import DetailView,FormView,CreateView
 from apps.catalog.forms import ReviewForm,CommentForm
 from apps.utils.views import CreateViewMixin
-from django.shortcuts import redirect,render_to_response
-from django.db.models import Max
+from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 
 class ShowCategory(DetailView):
     model = Category
@@ -90,3 +90,33 @@ class DoComment(CreateViewMixin,CreateView):
         return context
 
 show_product = DoComment.as_view()
+
+class CommentFormView(FormView):
+    form_class = CommentForm
+    def get(self, request, *args, **kwargs):
+        if not self.request.is_ajax():
+            return HttpResponseRedirect('/')
+
+    def post(self, request, *args, **kwargs):
+        if not self.request.is_ajax():
+            return HttpResponseRedirect('/')
+
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('success')
+        else:
+            faq_form_html = render_to_string(
+            'faq_form.html',
+                {'form':form}
+            )
+            return HttpResponse(faq_form_html)
+
+    def get_template_names(self, **kwargs):
+        if self.request.is_ajax():
+            return ['ajax_view.html']
+        else:
+            return ['notajax_view.html']
+
+example = CommentFormView.as_view()
