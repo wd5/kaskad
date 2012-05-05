@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ce8e9c6-0b1f-4ce7-a314-29f30ee5059e" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/catalog/do_comment.html" afterPath="$PROJECT_DIR$/templates/catalog/comment_form.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/catalog/forms.py" afterPath="$PROJECT_DIR$/apps/catalog/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/catalog/views.py" afterPath="$PROJECT_DIR$/apps/catalog/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/urls.py" afterPath="$PROJECT_DIR$/apps/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/script.js" afterPath="$PROJECT_DIR$/static/js/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/catalog/show_product.html" afterPath="$PROJECT_DIR$/templates/catalog/show_product.html" />
     </list>
     <ignored path="kaskad.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,19 +28,19 @@
     <splitter split-orientation="horizontal" split-proportion="0.48169193">
       <split-first>
         <leaf>
-          <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/apps/catalog/forms.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="41" selection-start="1216" selection-end="1216" vertical-scroll-proportion="0.0">
+                <state line="20" column="50" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.34213686">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/script.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="29" column="108" selection-start="911" selection-end="911" vertical-scroll-proportion="0.52220887">
+                <state line="29" column="0" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -75,8 +71,10 @@
           <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/apps/catalog/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="112" column="0" selection-start="3604" selection-end="3604" vertical-scroll-proportion="0.024822695">
-                  <folding />
+                <state line="149" column="35" selection-start="4629" selection-end="4629" vertical-scroll-proportion="0.71631205">
+                  <folding>
+                    <element signature="e#24#64#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -84,7 +82,7 @@
           <file leaf-file-name="comment_form.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/catalog/comment_form.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="13" column="0" selection-start="592" selection-end="592" vertical-scroll-proportion="-8.125">
+                <state line="11" column="26" selection-start="557" selection-end="557" vertical-scroll-proportion="-6.875">
                   <folding />
                 </state>
               </provider>
@@ -135,10 +133,10 @@
         <option value="$PROJECT_DIR$/templates/catalog/do_comment.html" />
         <option value="$PROJECT_DIR$/templates/catalog/show_product.html" />
         <option value="$PROJECT_DIR$/apps/urls.py" />
-        <option value="$PROJECT_DIR$/apps/catalog/forms.py" />
         <option value="$PROJECT_DIR$/static/js/script.js" />
-        <option value="$PROJECT_DIR$/apps/catalog/views.py" />
+        <option value="$PROJECT_DIR$/apps/catalog/forms.py" />
         <option value="$PROJECT_DIR$/templates/catalog/comment_form.html" />
+        <option value="$PROJECT_DIR$/apps/catalog/views.py" />
       </list>
     </option>
   </component>
@@ -732,13 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/catalog/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="41" selection-start="1216" selection-end="1216" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/catalog/show_product.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="108" column="50" selection-start="4434" selection-end="4434" vertical-scroll-proportion="-18.666666">
@@ -762,22 +753,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="108" selection-start="911" selection-end="911" vertical-scroll-proportion="0.52220887">
+        <state line="29" column="0" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/catalog/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="50" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.34213686">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/catalog/comment_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="592" selection-end="592" vertical-scroll-proportion="-8.125">
+        <state line="11" column="26" selection-start="557" selection-end="557" vertical-scroll-proportion="-6.875">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/catalog/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="0" selection-start="3604" selection-end="3604" vertical-scroll-proportion="0.024822695">
-          <folding />
+        <state line="149" column="35" selection-start="4629" selection-end="4629" vertical-scroll-proportion="0.71631205">
+          <folding>
+            <element signature="e#24#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

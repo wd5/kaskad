@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from apps.catalog.models import Product, Category, Review, Comment
 from django.views.generic import DetailView, FormView, CreateView
-from apps.catalog.forms import ReviewForm, CommentForm, CommentFormValid
+from apps.catalog.forms import ReviewForm, CommentForm
 from apps.utils.views import CreateViewMixin
 from django.shortcuts import redirect, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
@@ -66,7 +66,7 @@ class ShowReviews(CreateViewMixin, CreateView):
 reviews_list = ShowReviews.as_view()
 
 class CommentFormProduct(FormView):
-    form_class = CommentFormValid
+    form_class = CommentForm
     template_name = 'catalog/comment_form.html'
 
     def get_form_kwargs(self):
@@ -148,11 +148,9 @@ def do_comment(request):
 
         comment_form = CommentForm(data)
         if comment_form.is_valid():
-            #comment_form = CommentForm(data)
-            #comment_form.save()
+            comment_form.save()
             return HttpResponse('success')
         else:
-            comment_form = CommentFormValid(data)
             comment_form_html = render_to_string(
                 'catalog/comment_form.html',
                     {'form': comment_form}
