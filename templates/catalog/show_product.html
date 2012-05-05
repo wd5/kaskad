@@ -92,16 +92,7 @@
 
             <div class="comments">
                 <h2>Комментарии</h2>
-                <a class="do_comment">Прокомментировать</a>
-
-                <form class="mod_form" method="POST" action="">
-                    <div class="input"><label>Имя</label>{{ form.sender_name }}{{ form.sender_name.errors }}</div>
-                    <div class="input"><label>E-mail</label>{{ form.email }}{{ form.email.errors }}</div>
-                    <div class="textarea"><label>Текст комментария</label>{{ form.text }}{{ form.text.errors }}</div>
-                    <div class="submit">
-                        <div><input type="button" value="Отправить" /></div>
-                    </div>
-                </form>
+                <a class="do_comment fancybox" href="{{ product.get_absolute_url }}comment/">Прокомментировать</a>
 
                 {% if comments %}
 
@@ -113,7 +104,7 @@
                         </div>
                         <p>{{ node.text }}</p>
                         {% ifnotequal node.level 2  %}
-                            <a href="#" class="comment_answer">Ответить</a>
+                            <a class="comment_answer fancybox" href="{{ product.get_absolute_url }}comment/{{ node.id }}/">Ответить</a>
                         {% endifnotequal %}
                         {% if not node.is_leaf_node %}
                             <div class="comment lvl">
@@ -126,18 +117,7 @@
 
                 {% endif %}
 
-                {% if form.errors %}
-                    <script type="text/javascript">showForm();</script>
-                {% else %}
-                    <script type="text/javascript">hideForm();</script>
-                {% endif %}
-
             </div>
-
-
-
-
-
 
         </div>
     </div><!-- /product -->

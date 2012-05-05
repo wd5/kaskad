@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+from django.core.serializers import json
+from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
 
-from apps.catalog.models import Product,Category,Review,Comment
-from django.views.generic import DetailView,FormView,CreateView
-from apps.catalog.forms import ReviewForm,CommentForm
+from apps.catalog.models import Product, Category, Review, Comment
+from django.views.generic import DetailView, FormView, CreateView
+from apps.catalog.forms import ReviewForm, CommentForm, CommentFormValid
 from apps.utils.views import CreateViewMixin
-from django.shortcuts import redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render_to_response
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
 
 class ShowCategory(DetailView):
     model = Category
@@ -39,9 +42,9 @@ class ShowProduct(DetailView):
             context[context_object_name] = self.object
         return context
 
-#show_product = ShowProduct.as_view()
+show_product = ShowProduct.as_view()
 
-class ShowReviews(CreateViewMixin,CreateView):
+class ShowReviews(CreateViewMixin, CreateView):
     form_class = ReviewForm
     template_name = 'catalog/show_reviews.html'
     context_object_name = 'form'
@@ -53,7 +56,7 @@ class ShowReviews(CreateViewMixin,CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(ShowReviews, self).get_context_data(**kwargs)
-        if self.kwargs.get('action',None)=='thanks':
+        if self.kwargs.get('action', None) == 'thanks':
             context['is_successed'] = True
         else:
             context['is_successed'] = False
@@ -62,61 +65,98 @@ class ShowReviews(CreateViewMixin,CreateView):
 
 reviews_list = ShowReviews.as_view()
 
-class DoComment(CreateViewMixin,CreateView):
-    form_class = CommentForm
-    template_name = 'catalog/show_product.html'
-    #template_name = 'catalog/do_comment.html'
-    context_object_name = 'form'
+class CommentFormProduct(FormView):
+    form_class = CommentFormValid
+    template_name = 'catalog/comment_form.html'
 
-    def form_valid(self, form, **kwargs):
-        instance = form.save(commit=False)
-        product = Product.objects.get(id=self.kwargs.get('id',False))
-        instance.product = product
-        instance.save()
-        return redirect(self.get_success_url())
+    def get_form_kwargs(self):
+        kwargs = super(CommentFormProduct, self).get_form_kwargs()
+        initial = self.get_initial()
 
-    def get_success_url(self, **kwargs):
-        current_product = Product.objects.get(id=self.kwargs.get('id',False))
-        url = current_product.get_absolute_url()
-        return url
+        slug = self.kwargs['slug']
+        try:
+            node = self.kwargs['node']
+        except KeyError:
+            node = None
 
-    def get_context_data(self, **kwargs):
-        context = super(DoComment, self).get_context_data(**kwargs)
+        try:
+            product = Product.objects.get(slug=slug)
+        except Product.DoesNotExist:
+            return HttpResponseBadRequest()
 
-        current_product = Product.objects.get(id=self.kwargs.get('id',False))
-        context['product'] = current_product
-        context['comments'] = current_product.get_comments()
+        initial['product'] = product
+        if node:
+            try:
+                parent = Comment.objects.get(id=node)
+            except Comment.DoesNotExist:
+                return HttpResponseBadRequest()
+        initial['parent'] = node
 
-        return context
+        kwargs.update({
+            'initial': initial,
 
-show_product = DoComment.as_view()
+        })
+        return kwargs
 
-class CommentFormView(FormView):
-    form_class = CommentForm
     def get(self, request, *args, **kwargs):
-        if not self.request.is_ajax():
-            return HttpResponseRedirect('/')
-
-    def post(self, request, *args, **kwargs):
-        if not self.request.is_ajax():
-            return HttpResponseRedirect('/')
-
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        if form.is_valid():
-            form.save()
+        context = self.get_context_data(**kwargs)
+        context['form'] = form
+
+        slug = self.kwargs['slug']
+        try:
+            product = Product.objects.filter(slug=slug)
+            context['form'].fields['product'].queryset = product
+        except Product.DoesNotExist:
+            return HttpResponseBadRequest()
+
+        try:
+            node = self.kwargs['node']
+        except KeyError:
+            node = False
+
+        if node:
+            try:
+                parent = Comment.objects.filter(id=node)
+                context['form'].fields['parent'].queryset = parent
+            except Comment.DoesNotExist:
+                return HttpResponseBadRequest()
+        else:
+            context['form'].fields['parent'].queryset = Comment.objects.extra(where=['1=0'])
+
+        return self.render_to_response(context)
+
+show_comment_form = CommentFormProduct.as_view()
+
+@csrf_exempt
+def do_comment(request):
+    if request.is_ajax():
+        data = request.POST.copy()
+
+        try:
+            product_id = data['product']
+        except KeyError:
+            return HttpResponseBadRequest()
+
+        try:
+            product = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            return HttpResponseBadRequest()
+
+        data['product'] = product.id
+
+        comment_form = CommentForm(data)
+        if comment_form.is_valid():
+            #comment_form = CommentForm(data)
+            #comment_form.save()
             return HttpResponse('success')
         else:
-            faq_form_html = render_to_string(
-            'faq_form.html',
-                {'form':form}
+            comment_form = CommentFormValid(data)
+            comment_form_html = render_to_string(
+                'catalog/comment_form.html',
+                    {'form': comment_form}
             )
-            return HttpResponse(faq_form_html)
-
-    def get_template_names(self, **kwargs):
-        if self.request.is_ajax():
-            return ['ajax_view.html']
-        else:
-            return ['notajax_view.html']
-
-example = CommentFormView.as_view()
+            return HttpResponse(comment_form_html)
+    else:
+        return HttpResponseBadRequest()

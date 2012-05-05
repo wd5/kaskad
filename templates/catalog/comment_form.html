@@ -1,0 +1,13 @@
+<form class="mod_form" method="POST">
+    <div class="input"><label>Имя</label>{{ form.sender_name }}{{ form.sender_name.errors }}</div>
+    <div class="input"><label>E-mail</label>{{ form.email }}{{ form.email.errors }}</div>
+    <div class="textarea"><label>Текст комментария</label>{{ form.text }}{{ form.text.errors }}</div>
+    <div style="display: none;">{{ form.product }}
+    {{ form.parent }}</div>
+    <div class="submit">
+        <div><input type="button" value="Отправить" id="sendcomment" /></div>
+    </div>
+</form>
+
+{% comment %}{% if id_product %}
+{% endif %}{% endcomment %}
