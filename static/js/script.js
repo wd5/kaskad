@@ -13,8 +13,23 @@ $(function(){
         }
     );
 
-    $('#sendcomment').live('click', function(){
 
+    $('.to_cart').live('click', function(){
+        $.ajax({
+            url: "/",
+            data: {
+
+            },
+            type: "POST",
+            success: function(data) {
+
+            }
+        });
+
+        return false;
+    });
+
+    $('#sendcomment').live('click', function(){
         $.ajax({
             url: "/do_comment/",
             data: {
@@ -39,7 +54,6 @@ $(function(){
         });
 
         return false;
-
     });
 
 });
