@@ -25,7 +25,13 @@ urlpatterns = patterns('',
     url(r'^articles/$', 'apps.pages.views.show_articles'),
     url(r'^articles/(?P<slug>[^/]+)/$', 'apps.pages.views.show_article'),
 
-    url(r'^do_comment/$','apps.catalog.views.do_comment')
+    url(r'^do_comment/$','apps.catalog.views.do_comment'),
+
+    url(r'^cart/$','apps.orders.views.view_cart'),
+    url(r'^add_product_to_cart/$','apps.orders.views.add_product_to_cart'),
+    #url(r'^delete_product_from_cart/$','apps.orders.views.view_cart'),
+    #url(r'^change_cart_product_count/$','apps.orders.views.view_cart')
+    #url(r'^registration/$',registration, name='registration_order')
 
 )
 #url(r'^captcha/', include('captcha.urls')),

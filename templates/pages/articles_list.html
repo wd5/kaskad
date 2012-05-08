@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load thumbnail pagination_tags siteblocks_extras pages_extras %}
+{% load thumbnail pagination_tags siteblocks_extras orders_extras pages_extras %}
 
 {% if page.title %}
     {% block title %}
@@ -24,6 +24,6 @@
 {% endblock %}
 
 {% block right %}
-    {% include 'siteblocks/cart.html' %}
+    {% block_cart %}
     {% block_servicies %}
 {% endblock %}

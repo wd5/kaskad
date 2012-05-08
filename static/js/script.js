@@ -12,21 +12,81 @@ $(function(){
             $('.shutter_text').show('slow');
         }
     );
+    //Анимация корзины при изменении
 
+    function animate_cart(){
 
-    $('.to_cart').live('click', function(){
-        $.ajax({
-            url: "/",
-            data: {
-
-            },
-            type: "POST",
-            success: function(data) {
-
+        $('.cart').animate({
+                opacity: 0.25
+            }, 200, function() {
+                $(this).animate({
+                    opacity: 1
+                },200);
             }
+        );
+
+    }
+
+    function create_img_fly(el)
+    {
+        var img = el.find('.item_img_zl');
+        var offset = el.find('img').offset();
+        element = "<div class='img_fly'>"+img.html()+"</div>";
+        $('body').append(element);
+        $('.img_fly').css({
+            'position': "absolute",
+            'z-index': "1000",
+            'left': offset.left,
+            'top': offset.top
         });
 
-        return false;
+    }
+
+    //Добавление товара в корзину
+
+    $('.to_cart').live('click', function(){
+        var product_id = $('.product_id').val()
+
+        if (product_id){
+            $.ajax({
+                type:'post',
+                url:'/add_product_to_cart/',
+                data:{
+                    'product_id':product_id
+                },
+                success:function(data){
+                    $('.img_fly').remove();
+                    create_img_fly($('.product_img'));
+
+                    $('.cart').replaceWith(data);
+
+                    var fly = $('.img_fly');
+                    var left_end = $('.cart').offset().left;
+                    var top_end = $('.cart').offset().top;
+
+                    fly.animate(
+                        {
+                            left: left_end,
+                            top: top_end
+                        },
+                        {
+                            queue: false,
+                            duration: 600,
+                            easing: "swing"
+                        }
+                    ).fadeOut(600);
+
+                    setTimeout(function(){
+                        animate_cart();
+                    } ,600);
+
+                },
+                error:function(jqXHR,textStatus,errorThrown){
+
+                }
+            });
+        }
+
     });
 
     $('#sendcomment').live('click', function(){

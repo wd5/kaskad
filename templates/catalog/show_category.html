@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load siteblocks_extras pages_extras thumbnail cache pytils_numeral %}
+{% load siteblocks_extras pages_extras thumbnail orders_extras cache pytils_numeral %}
 
 {% block title %}
     {% if category.title %}
@@ -35,7 +35,7 @@
 {% endblock %}
 
 {% block right %}
-    {% include 'siteblocks/cart.html' %}
+    {% block_cart %}
     {% block_servicies %}
 {% endblock %}
 

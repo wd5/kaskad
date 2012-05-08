@@ -2,7 +2,6 @@
 from apps.pages.models import Page
 from apps.siteblocks.models import Settings
 from django import template
-from django.conf import settings
 
 register = template.Library()
 

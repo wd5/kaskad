@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load thumbnail siteblocks_extras pages_extras %}
+{% load thumbnail siteblocks_extras pages_extras orders_extras %}
 
 {% if page.title %}
     {% block title %}
@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block right %}
-    {% include 'siteblocks/cart.html' %}
+    {% block_cart %}
     {% block_price %}
 {% endblock %}
 

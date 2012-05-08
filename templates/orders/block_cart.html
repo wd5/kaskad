@@ -1,0 +1,11 @@
+{% if is_empty %}
+    <div class="cart">
+        <h3>Ваша корзина пока пуста</h3>
+        <span>Чаще всего показывают <a href="#">котлы для дачи</a></span>
+    </div>
+{% else %}
+    <div class="cart">
+        <h3>В корзине {{ cart_products_count }} {{ cart_products_text }}</h3>
+        <span>На сумму {{ cart_total }} руб.<a href="/cart/">Оформить покупку</a></span>
+    </div>
+{% endif %}

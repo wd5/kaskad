@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-28 20:21+1000\n"
+"POT-Creation-Date: 2012-05-08 13:55+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,58 +90,59 @@ msgstr "каталог товаров"
 msgid "Catalog"
 msgstr "Каталог товаров"
 
-#: apps/catalog/models.py:33
+#: apps/catalog/models.py:37
 msgid "category"
 msgstr "категория"
 
-#: apps/catalog/models.py:34
+#: apps/catalog/models.py:38
 msgid "categories"
 msgstr "категории"
 
-#: apps/catalog/models.py:92
+#: apps/catalog/models.py:104
 msgid "product"
 msgstr "товар"
 
-#: apps/catalog/models.py:93
+#: apps/catalog/models.py:105
 msgid "products"
 msgstr "товары"
 
-#: apps/catalog/models.py:136
+#: apps/catalog/models.py:148
 msgid "feature"
 msgstr "характеристика"
 
-#: apps/catalog/models.py:137
+#: apps/catalog/models.py:149
 msgid "features"
 msgstr "характеристики"
 
-#: apps/catalog/models.py:148
+#: apps/catalog/models.py:160
 msgid "feature_value"
 msgstr "значение"
 
-#: apps/catalog/models.py:149
+#: apps/catalog/models.py:161
 msgid "feature_values"
 msgstr "значения"
 
-#: apps/catalog/models.py:161
+#: apps/catalog/models.py:173
 msgid "attached_photo"
 msgstr "фотография"
 
-#: apps/catalog/models.py:162
+#: apps/catalog/models.py:174
 msgid "attached_photos"
 msgstr "фотографии"
 
-#: apps/catalog/models.py:179
+#: apps/catalog/models.py:191
 msgid "comment"
 msgstr "комментарий"
 
-#: apps/catalog/models.py:180
+#: apps/catalog/models.py:192
 msgid "comments"
 msgstr "комментарии"
 
-#: apps/catalog/models.py:199
+#: apps/catalog/models.py:212
 msgid "review"
 msgstr "отзыв"
 
+#: apps/catalog/models.py:213
 msgid "reviews"
 msgstr "отзывы"
 
@@ -160,6 +161,30 @@ msgstr "вопрос"
 #: apps/faq/models.py:18
 msgid "questions"
 msgstr "вопросы"
+
+msgid "Orders"
+msgstr "Заказы"
+
+msgid "orders"
+msgstr "заказы"
+
+msgid "cart"
+msgstr "корзина"
+
+msgid "carts"
+msgstr "корзина"
+
+msgid "product_item"
+msgstr "товар"
+
+msgid "product_items"
+msgstr "товары"
+
+msgid "order_item"
+msgstr "заказ"
+
+msgid "order_items"
+msgstr "заказы"
 
 #: apps/pages/__init__.py:2
 msgid "pages"
