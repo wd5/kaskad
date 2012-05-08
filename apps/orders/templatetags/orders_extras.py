@@ -45,7 +45,8 @@ def block_cart(context):
         'is_empty':is_empty,
         'cart_products_count':cart_products_count,
         'cart_total':cart_total,
-        'cart_products_text':cart_products_text
+        'cart_products_text':cart_products_text,
+        'sessionid':sessionid
     }
 
 @register.simple_tag()

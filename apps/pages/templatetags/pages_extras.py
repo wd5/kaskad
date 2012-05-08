@@ -55,3 +55,7 @@ def block_servicies():
     except Page.DoesNotExist:
         return {'servicies':False,}
 
+@register.simple_tag
+def set_sessparam(request):
+    request.session['foo'] = 'bar'
+    return ''

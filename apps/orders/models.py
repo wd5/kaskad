@@ -78,7 +78,7 @@ class CartProduct(models.Model):
             return value
 
     def __unicode__(self):
-        return u'%s х %s' % (self.product,self.count)
+        return u'%s' % self.product
 
 from django.db.models.signals import post_save
 def delete_old_carts(sender, instance, created, **kwargs):
