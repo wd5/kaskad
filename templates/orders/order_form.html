@@ -1,5 +1,4 @@
 {% if cart_products and form %}
-<div class="order col">
     <h3>Ваш заказ</h3>
     <p>{% for product in cart_products %}
         {{ product.product.title }} - {{ product.count }}шт{% if forloop.last %}.{% else %},{% endif %}
@@ -7,9 +6,10 @@
         На сумму <span>{{ cart_str_total }}</span> руб.</p>
     <form action="" class="order_form" method="post">
         <h3>Контактная информация</h3>
-        <div class="input">{{ form.fullname }}</div>
-        <div class="input">{{ form.contact_info }}</div>
+        <div class="input">{{ form.fullname }}{{ form.fullname.errors }}</div>
+        <div class="input">{{ form.contact_info }}{{ form.contact_info.errors }}</div>
         <div class="submit"><div><input type="button" class="send_order" value="Завершить оформление" /></div></div>
     </form>
-</div><!-- /order -->
+{% comment %}<div class="order col">
+</div><!-- /order -->{% endcomment %}
 {% endif %}

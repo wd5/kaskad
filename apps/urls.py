@@ -31,8 +31,8 @@ urlpatterns = patterns('',
     url(r'^add_product_to_cart/$','apps.orders.views.add_product_to_cart'),
     url(r'^delete_product_from_cart/$','apps.orders.views.delete_product_from_cart'),
     url(r'^change_cart_product_count/$','apps.orders.views.change_cart_product_count'),
-    url(r'^show_order_form/$','apps.orders.views.show_order_form')
-    #url(r'^registration_order/$',registration, name='registration_order')
+    url(r'^show_order_form/$','apps.orders.views.show_order_form'),
+    url(r'^registration_order/$','apps.orders.views.registration_order')
 
 )
 #url(r'^captcha/', include('captcha.urls')),

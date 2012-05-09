@@ -1,7 +1,9 @@
 {% if is_empty %}
     <div class="cart">
         <h3>Ваша корзина пока пуста</h3>
-        <span>Чаще всего показывают <a href="#">котлы для дачи</a></span>
+        {% if popular_product %}
+            <span>Чаще всего заказывают <a href="{{ popular_product.get_absolute_url }}">{{ popular_product.title }}</a></span>
+        {% endif %}
     </div>
 {% else %}
     <div class="cart">

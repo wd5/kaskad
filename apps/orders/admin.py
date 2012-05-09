@@ -16,12 +16,12 @@ class CartAdmin(admin.ModelAdmin):
 
 class OrderProductInlines(admin.TabularInline):
     model = OrderProduct
-    readonly_fields = ('product',)
+    readonly_fields = ('product','count')
     extra = 0
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id','fullname','contact_info',)
-    list_display_links = ('id','fullname','contact_info',)
+    list_display = ('id','create_date','fullname','admin_summary',)
+    list_display_links = ('id','fullname','create_date',)
     search_fields = ('fullname','contact_info',)
     list_filter = ('create_date',)
     inlines = [OrderProductInlines]

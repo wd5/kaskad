@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 import datetime
+from django.core.mail.message import EmailMessage
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import FormView,DetailView,TemplateView
-from apps.orders.models import Cart,CartProduct,Order
+from apps.orders.models import Cart,CartProduct,Order, OrderProduct
 from apps.catalog.models import Product
+from apps.siteblocks.models import Settings
 from apps.orders.forms import RegistrationOrderForm
 from pytils.numeral import choose_plural
+import settings
 
 class ViewCart(TemplateView):
     template_name = 'orders/cart_detail.html'
@@ -58,10 +61,8 @@ def show_order_form(request):
 
         try:
             cart = Cart.objects.get(id=cart_id)
-            cart_id = cart.id
         except Cart.DoesNotExist:
             cart = False
-            cart_id = False
 
         if cart:
             cart_products = cart.get_products()
@@ -213,19 +214,6 @@ def delete_product_from_cart(request):
             cart_total = cart.get_str_total()
             is_empty = False
             cart_products_text = u'товар%s' %(choose_plural(cart_products_count,(u'',u'а',u'ов')))
-        '''
-        cart_html = render_to_string(
-            'orders/cart_block.html',
-            {
-                'is_empty':is_empty,
-                'cart_products_count':cart_products_count,
-                'cart_total':cart_total,
-                'cart_products_text':cart_products_text
-            }
-        )
-        cart_html = cart_html.replace(u'    ',u'').replace(u'\n',u'')
-        '''
-        #data = u'''{"cart_html":'%s',"cart_total":'%s'}'''%(cart_html,cart_total)
         data = u'''{"cart_total":'%s'}'''%cart_total
         response.content = data
         return response
@@ -263,31 +251,21 @@ def change_cart_product_count(request):
 
         return HttpResponse(data)
 
+@csrf_exempt
 def registration_order(request):
-    #if request.method != 'POST':
-    #    return HttpResponseRedirect('/cart/')
-
-    user = request.user
-    cookies = request.COOKIES
-
-    cookies_cart_id = False
-    if 'klev_cart_id' in cookies:
-        cookies_cart_id = cookies['klev_cart_id']
-
-    sessionid = request.session.session_key
-
-    if user.is_authenticated():
-        if cookies_cart_id:
-            try:
-                cart = Cart.objects.get(id=cookies_cart_id)
-            except Cart.DoesNotExist:
-                cart = False
-        else:
-            try:
-                cart = Cart.objects.get(user=request.user)
-            except Cart.DoesNotExist:
-                cart = False
+    if not request.is_ajax():
+        return HttpResponseRedirect('/')
     else:
+        cookies = request.COOKIES
+
+        cookies_cart_id = False
+        if 'kaskad_cart_id' in cookies:
+            cookies_cart_id = cookies['kaskad_cart_id']
+
+        sessionid = request.session.session_key
+        response = HttpResponse()
+        badresponse = HttpResponseBadRequest()
+
         if cookies_cart_id:
             try:
                 cart = Cart.objects.get(id=cookies_cart_id)
@@ -299,117 +277,63 @@ def registration_order(request):
             except Cart.DoesNotExist:
                 cart = False
 
+        if not cart:
+            return HttpResponseBadRequest()
 
-    if not cart:
-        return HttpResponseRedirect(u'/cart/')
+        cart_products = cart.get_products()
+        cart_products_count = cart_products.count()
 
-    cart_products_count = cart.get_products_count()
+        if not cart_products_count:
+            return HttpResponseBadRequest()
 
-    if not cart_products_count:
-        return HttpResponseRedirect(u'/cart/')
+        registration_order_form = RegistrationOrderForm(data=request.POST)
 
-    fio = u''
-    email = u''
-    telephone = u''
-    addresses = False
-    if user.is_authenticated():
-        fio = user.fio
-        email = user.email
-        telephone = user.telephone
+        if registration_order_form.is_valid():
+            cd = registration_order_form.cleaned_data
+            #добавили заказ
+            new_order = registration_order_form.save()
 
-        addresses = user.get_addresses()
+            for cart_product in cart_products:
+                OrderProduct.objects.create(
+                    order=new_order,
+                    count=cart_product.count,
+                    product=cart_product.product
+                )
 
-    stores = Store.items.all()
-    initial ={
-        'fio':fio,
-        'email':email,
-        'telephone':telephone,
-        }
+            cart.delete() #Очистка и удаление корзины
+            response.delete_cookie('kaskad_cart_id')
 
-    registration_order_form = RegistrationOrderForm(
-        data=request.POST or None,
-        initial=initial
-    )
-    if registration_order_form.is_valid():
-        cd = registration_order_form.cleaned_data
-
-        if not user.is_authenticated():
-            user = None
-        new_order = Order.objects.create(
-            user=user,
-            fio=cd['fio'],
-            email=cd['email'],
-            telephone=cd['telephone'],
-            address=cd['address'],
-            pickup=cd['pickup']
-        )
-
-        for cart_product in cart.get_products():
-            OrderProduct.objects.create(
-                order=new_order,
-                count=cart_product.count,
-                product=cart_product.product
+            subject = u'ООО Каскад - Информация по заказу.'
+            subject = u''.join(subject.splitlines())
+            message = render_to_string(
+                'orders/message_template.html',
+                {
+                    'order':new_order,
+                    'products':new_order.get_products()
+                }
             )
 
-        cart.delete() #Очистка и удаление корзины
+            try:
+                emailto = Settings.objects.get(name='workemail').value
+            except Settings.DoesNotExist:
+                emailto = False
 
-        current_site = Site.objects.get_current()
-        current_site = current_site.name
-
-        subject = u'%s - Информация по заказу №%s.' %(current_site,new_order.id)
-        subject = u''.join(subject.splitlines())
-
-        message = render_to_string(
-            'orders/message_template.html',
-                {
-                'order':new_order
-            }
-        )
-
-        msg = EmailMessage(subject, message, settings.DEFAULT_FROM_EMAIL, [cd['email']])
-        msg.content_subtype = "html"
-
-        msg.send()
-
-        dict = {
-            'order':new_order
-        }
-        if not request.user.is_authenticated():
-            initial_reg_form = {
-                'fio':cd['fio'],
-                'email':cd['email'],
-                'telephone':cd['telephone']
-            }
-            reg_form = RegistrationForm(initial=initial_reg_form)
-
-            email_orders_count = Order.objects.filter(email=cd['email']).count()
-
-            dict = {
-                'order':new_order,
-                'reg_form':reg_form,
-                'email_orders_count':email_orders_count
-
-            }
-
-
-
-        return direct_to_template(
-            request,
-            'orders/checkout_2.html',
-            dict
-        )
-
-
-
-    return direct_to_template(
-        request,
-        'orders/checkout_1.html',
-            {
-            'fio':fio,
-            'email':email,
-            'telephone':telephone,
-            'addresses':addresses,
-            'stores':stores,
-            'registration_order_form':registration_order_form
-        }
-    )
+            if emailto:
+                msg = EmailMessage(subject, message, settings.DEFAULT_FROM_EMAIL,[emailto])
+                msg.content_subtype = "html"
+                msg.send()
+            messageToUser = 'Спасибо за заказ. Номер вашего заказа <i>%s</i>. В ближайшее время с вами связжется наш менеджер.' % new_order.id
+            response.content = messageToUser
+            return response
+        else:
+            cart_str_total = cart.get_str_total()
+            order_html = render_to_string(
+                'orders/order_form.html',
+                    {
+                    'cart_products':cart_products,
+                    'cart_str_total':cart_str_total,
+                    'form':registration_order_form
+                }
+            )
+            badresponse.content = order_html
+            return badresponse

@@ -262,10 +262,6 @@ $(function(){
                     $('.mod_form').replaceWith(data);
                 }
             }
-            /*,
-            error:function(jqXHR,textStatus,errorThrown){
-                $('.mod_form').html(jqXHR.responseText);
-            }*/
         });
 
         return false;
@@ -274,7 +270,7 @@ $(function(){
     $('.submit input').live('click', function(){
         var cart_id = $('.id_cart').val();
         $.ajax({
-            type:'post',
+            type:'POST',
             url:'/show_order_form/',
             data:{
                 'cart_id':cart_id
@@ -291,23 +287,31 @@ $(function(){
     });
 
     $('.send_order').live('click', function(){
-        var cart_id = $('.id_cart').val();
-        var fullname = $('.id_fullname').val();
-        var contact_info = $('.id_contact_info').val();
+        var fullname = $('#id_fullname').val();
+        var contact_info = $('#id_contact_info').val();
         $.ajax({
             type:'post',
             url:'/registration_order/',
             data:{
-                'cart_id':cart_id
+                'fullname':fullname,
+                'contact_info':contact_info
             },
             success:function(data){
-                $('.order').html(data);
-                $('.order').show('fast');
+                $('.order').hide('fast');
+                $('.order').remove();
+                $('.cart_items').find('.cart_sum').fadeOut('fast', function(){
+                    $('.cart_sum').remove();
+                    $('.cart_item').hide().remove();
+                });
+                $('.cart_items').find('h1').html('Ваша корзина пока пуста');
+                $('.cart_items').append('<p></p>');
+                $('.cart_items').find('p').html(data);
             },
-            error:function(data){
-
+            error:function(jqXHR,textStatus,errorThrown){
+                $('.order').html(jqXHR.responseText);
             }
         });
     });
 
 });
+

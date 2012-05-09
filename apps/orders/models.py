@@ -102,10 +102,47 @@ class Order(models.Model):
     def __unicode__(self):
         return u'%s - %s' % (self.fullname,self.create_date)
 
+    def get_products(self):
+        return self.orderproduct_set.select_related().all()
+
+    def get_products_count(self):
+        return self.get_products().count()
+
+    def get_total(self):
+        sum = 0
+        for order_product in self.orderproduct_set.select_related().all():
+            sum += order_product.get_total()
+        return sum
+
+    def get_str_total(self):
+        total = self.get_total()
+        value = u'%s' %total
+        if total._isinteger():
+            value = u'%s' %value[:len(value)-3]
+            count = 3
+        else:
+            count = 6
+
+        if len(value)>count:
+            ends = value[len(value)-count:]
+            starts = value[:len(value)-count]
+
+            return u'%s %s' %(starts, ends)
+        else:
+            return value
+
+    def admin_summary(self):
+        return '<span>%s</span>' % self.get_str_total()
+    admin_summary.allow_tags = True
+    admin_summary.short_description = 'Сумма'
+
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, verbose_name=u'Заказ')
     count = models.PositiveIntegerField(default=1, verbose_name=u'Количество')
     product = models.ForeignKey(Product, verbose_name=u'Товар')
+
+    def __unicode__(self):
+        return u'на сумму %s руб.' % self.get_str_total()
 
     class Meta:
         verbose_name =_(u'product_item')

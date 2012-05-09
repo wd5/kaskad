@@ -10,6 +10,12 @@ def image_path(self, instance, filename):
     filename = translify(filename).replace(' ', '_')
     return os.path.join('uploads', 'images/menu', filename)
 
+type_choices = (
+    (u'input',u'input'),
+    (u'textarea',u'textarea'),
+    (u'redactor',u'redactor'),
+)
+
 class Settings(models.Model):
     title = models.CharField(
         verbose_name = u'Название',
@@ -21,6 +27,11 @@ class Settings(models.Model):
     )
     value = models.TextField(
         verbose_name = u'Значение'
+    )
+    type = models.CharField(
+        max_length=20,
+        verbose_name=u'Тип значения',
+        choices=type_choices
     )
 
     class Meta:

@@ -7,8 +7,27 @@ from sorl.thumbnail.admin import AdminImageMixin
 from mptt.admin import MPTTModelAdmin
 from apps.siteblocks.models import News
 
+class SettingsAdminForm(forms.ModelForm):
+    class Meta:
+        model = Settings
+
+    def __init__(self, *args, **kwargs):
+        super(SettingsAdminForm, self).__init__(*args, **kwargs)
+        try:
+            instance = kwargs['instance']
+        except KeyError:
+            instance = False
+        if instance:
+            if instance.type == u'input':
+                self.fields['value'].widget = forms.TextInput()
+            elif instance.type == u'textarea':
+                self.fields['value'].widget = forms.Textarea()
+            elif instance.type == u'redactor':
+                self.fields['value'].widget = Redactor(attrs={'cols': 120, 'rows': 10},)
+
 class SettingsAdmin(admin.ModelAdmin):
     list_display = ('title','name','value',)
+    form = SettingsAdminForm
 
 class NewsAdminForm(forms.ModelForm):
     text = forms.CharField(
