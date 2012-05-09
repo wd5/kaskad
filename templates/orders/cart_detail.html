@@ -29,11 +29,10 @@
                         <div class="item_img_fr"></div>
                     </div>
                     <div class="cart_item_name"><h3>{{ product.product.title }}</h3><p>Отапливаемая площадь 50-100 м2{% comment %}{{ product.product.description|safe }}{% endcomment %}</p></div>
-                    <div class="cart_item_price">{{ product.product.get_str_price }}</div>
+                    <div class="cart_item_price">{{ product.product.price }}</div>
                     <div class="cart_item_qty_btn"><input type="button" value="{{ product.count }}шт" name="{{ product.count }}" /></div>
-                    <div class="cart_item_sum">{{ product.get_str_total }}</div>
-                    <div class="cart_del"><input type="hidden" class="product_id" value="{{ product.id }}">
-                        <input type="hidden" class="id_cart" value="{{ product.cart.id }}"></div>
+                    <div class="cart_item_sum">{{ product.get_total }}</div>
+                    <div class="cart_del"><input type="hidden" class="product_id" value="{{ product.id }}"></div>
                 </div>
             {% endfor %}
 
@@ -41,6 +40,7 @@
                 <div class="cart_sum_in">
                     <p>Итого: <span class="itog">{{ cart_str_total }}</span></p>
                     <div class="submit"><div><input type="button" value="Оформить покупку" /></div></div>
+                    <input type="hidden" class="id_cart" value="{{ cart_id }}">
                 </div>
             </div>
 
@@ -49,6 +49,7 @@
                 <p><span class="cart_qty_price"></span> руб. × <input class="cart_qty_modal_text" type="text" value="" /> = <span class="cart_qty_total_price"></span> руб.</p>
                 <div>
                     <input type="hidden" class="cart_qty_all_count" value="" />
+                    <input type="hidden" class="initial_count" value="" />
                     <input type="hidden" class="cart_qty_all_price" value="" />
                     <input type="hidden" class="cart_qty_cart_id" value="" />
                     <input type="hidden" class="cart_qty_item_id" value="" />
@@ -66,16 +67,6 @@
 {% endblock %}
 
 {% block additional %}
-    {% if not is_empty %}
-    <div class="order col" style="display: none;">
-        <h3>Ваш заказ</h3>
-        <p>Котел КВр-0,03 - 1 шт, котел КВр-0,06 - 2 шт. На сумму <span>138 000</span> руб.</p>
-        <form action="" class="order_form" method="post">
-            <h3>Контактная информация</h3>
-            <div class="input"><input type="text" placeholder="Контактное лицо"/></div>
-            <div class="input"><input type="text" placeholder="E-mail, номер телефона"/></div>
-            <div class="submit"><div><input type="submit" value="Завершить оформление" /></div></div>
-        </form>
+    <div class="order col">
     </div><!-- /order -->
-    {% endif %}
 {% endblock %}

@@ -8,7 +8,6 @@ import os
 class Cart(models.Model):
     create_date = models.DateTimeField(verbose_name=u'Дата создания', default=datetime.datetime.now)
     sessionid = models.CharField(max_length=50, verbose_name=u'ID сессии')
-    #products = models.ManyToManyField(Product, through="CartProduct", blank=True, verbose_name=u'Товары', related_name='cart_products')
 
     class Meta:
         verbose_name = _(u'cart')
@@ -46,7 +45,6 @@ class Cart(models.Model):
         else:
             return value
 
-
 class CartProduct(models.Model):
     cart = models.ForeignKey(Cart, verbose_name=u'Корзина')
     count = models.PositiveIntegerField(default=1, verbose_name=u'Количество')
@@ -78,7 +76,7 @@ class CartProduct(models.Model):
             return value
 
     def __unicode__(self):
-        return u'%s' % self.product
+        return u'на %s руб.' % self.get_str_total()
 
 from django.db.models.signals import post_save
 def delete_old_carts(sender, instance, created, **kwargs):
@@ -95,8 +93,6 @@ class Order(models.Model):
     fullname = models.CharField(max_length=150, verbose_name=u'Фамилия Имя Отчество')
     create_date = models.DateTimeField(verbose_name=u'Дата оформления', default=datetime.datetime.now)
     contact_info = models.CharField(max_length=255, verbose_name=u'Контактная информация')
-    cart = models.ForeignKey(Cart, verbose_name=u'Корзина')
-    #is_issued = models.BooleanField(verbose_name=u'Заказ оформлен', default=True)
 
     class Meta:
         verbose_name = _(u'order_item')
@@ -105,4 +101,34 @@ class Order(models.Model):
 
     def __unicode__(self):
         return u'%s - %s' % (self.fullname,self.create_date)
+
+class OrderProduct(models.Model):
+    order = models.ForeignKey(Order, verbose_name=u'Заказ')
+    count = models.PositiveIntegerField(default=1, verbose_name=u'Количество')
+    product = models.ForeignKey(Product, verbose_name=u'Товар')
+
+    class Meta:
+        verbose_name =_(u'product_item')
+        verbose_name_plural =_(u'product_items')
+
+    def get_total(self):
+        total = self.product.price * self.count
+        return total
+
+    def get_str_total(self):
+        total = self.get_total()
+        value = u'%s' %total
+        if total._isinteger():
+            value = u'%s' %value[:len(value)-3]
+            count = 3
+        else:
+            count = 6
+
+        if len(value)>count:
+            ends = value[len(value)-count:]
+            starts = value[:len(value)-count]
+
+            return u'%s %s' %(starts, ends)
+        else:
+            return value
 

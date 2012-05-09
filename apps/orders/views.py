@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import FormView,DetailView,TemplateView
@@ -18,8 +18,10 @@ class ViewCart(TemplateView):
 
         try:
             cart = Cart.objects.get(sessionid=sessionid)
+            cart_id = cart.id
         except Cart.DoesNotExist:
             cart = False
+            cart_id = False
 
         is_empty = True
         if cart:
@@ -35,9 +37,54 @@ class ViewCart(TemplateView):
         context['is_empty'] = is_empty
         context['cart_products'] = cart_products
         context['cart_str_total'] = cart_str_total
+        context['cart_id'] = cart_id
         return context
 
 view_cart = ViewCart.as_view()
+
+@csrf_exempt
+def show_order_form(request):
+    if not request.is_ajax():
+        return HttpResponseRedirect('/')
+    else:
+        if 'cart_id' not in request.POST:
+            return HttpResponseBadRequest()
+        else:
+            cart_id = request.POST['cart_id']
+            try:
+                cart_id = int(cart_id)
+            except ValueError:
+                return HttpResponseBadRequest()
+
+        try:
+            cart = Cart.objects.get(id=cart_id)
+            cart_id = cart.id
+        except Cart.DoesNotExist:
+            cart = False
+            cart_id = False
+
+        if cart:
+            cart_products = cart.get_products()
+        else:
+            cart_products = False
+
+        cart_str_total = u''
+        if cart_products:
+            cart_str_total = cart.get_str_total()
+
+        response = HttpResponse()
+        order_form = RegistrationOrderForm()
+
+        order_html = render_to_string(
+            'orders/order_form.html',
+                {
+                'cart_products':cart_products,
+                'cart_str_total':cart_str_total,
+                'form':order_form
+            }
+        )
+        response.content = order_html
+        return response
 
 @csrf_exempt
 def add_product_to_cart(request):
@@ -47,7 +94,6 @@ def add_product_to_cart(request):
         if 'product_id' not in request.POST:
             return HttpResponseBadRequest()
         else:
-
             product_id = request.POST['product_id']
             try:
                 product_id = int(product_id)
@@ -183,3 +229,187 @@ def delete_product_from_cart(request):
         data = u'''{"cart_total":'%s'}'''%cart_total
         response.content = data
         return response
+
+@csrf_exempt
+def change_cart_product_count(request):
+    if not request.is_ajax():
+        return HttpResponseRedirect('/')
+    else:
+        if 'cart_product_id' not in request.POST or 'new_count' not in request.POST:
+            return HttpResponseBadRequest()
+
+        cart_product_id = request.POST['cart_product_id']
+        try:
+            cart_product_id = int(cart_product_id)
+        except ValueError:
+            return HttpResponseBadRequest()
+
+        new_count = request.POST['new_count']
+        try:
+            new_count = int(new_count)
+        except ValueError:
+            return HttpResponseBadRequest()
+
+        try:
+            cart_product = CartProduct.objects.get(id=cart_product_id)
+        except CartProduct.DoesNotExist:
+            return HttpResponseBadRequest()
+
+        cart_product.count = new_count
+        cart_product.save()
+        cart_str_total = cart_product.cart.get_str_total()
+
+        data = u'''{"tr_str_total":'%s', "cart_str_total":'%s'}'''%(cart_product.get_total(),cart_str_total)
+
+        return HttpResponse(data)
+
+def registration_order(request):
+    #if request.method != 'POST':
+    #    return HttpResponseRedirect('/cart/')
+
+    user = request.user
+    cookies = request.COOKIES
+
+    cookies_cart_id = False
+    if 'klev_cart_id' in cookies:
+        cookies_cart_id = cookies['klev_cart_id']
+
+    sessionid = request.session.session_key
+
+    if user.is_authenticated():
+        if cookies_cart_id:
+            try:
+                cart = Cart.objects.get(id=cookies_cart_id)
+            except Cart.DoesNotExist:
+                cart = False
+        else:
+            try:
+                cart = Cart.objects.get(user=request.user)
+            except Cart.DoesNotExist:
+                cart = False
+    else:
+        if cookies_cart_id:
+            try:
+                cart = Cart.objects.get(id=cookies_cart_id)
+            except Cart.DoesNotExist:
+                cart = False
+        else:
+            try:
+                cart = Cart.objects.get(sessionid=sessionid)
+            except Cart.DoesNotExist:
+                cart = False
+
+
+    if not cart:
+        return HttpResponseRedirect(u'/cart/')
+
+    cart_products_count = cart.get_products_count()
+
+    if not cart_products_count:
+        return HttpResponseRedirect(u'/cart/')
+
+    fio = u''
+    email = u''
+    telephone = u''
+    addresses = False
+    if user.is_authenticated():
+        fio = user.fio
+        email = user.email
+        telephone = user.telephone
+
+        addresses = user.get_addresses()
+
+    stores = Store.items.all()
+    initial ={
+        'fio':fio,
+        'email':email,
+        'telephone':telephone,
+        }
+
+    registration_order_form = RegistrationOrderForm(
+        data=request.POST or None,
+        initial=initial
+    )
+    if registration_order_form.is_valid():
+        cd = registration_order_form.cleaned_data
+
+        if not user.is_authenticated():
+            user = None
+        new_order = Order.objects.create(
+            user=user,
+            fio=cd['fio'],
+            email=cd['email'],
+            telephone=cd['telephone'],
+            address=cd['address'],
+            pickup=cd['pickup']
+        )
+
+        for cart_product in cart.get_products():
+            OrderProduct.objects.create(
+                order=new_order,
+                count=cart_product.count,
+                product=cart_product.product
+            )
+
+        cart.delete() #Очистка и удаление корзины
+
+        current_site = Site.objects.get_current()
+        current_site = current_site.name
+
+        subject = u'%s - Информация по заказу №%s.' %(current_site,new_order.id)
+        subject = u''.join(subject.splitlines())
+
+        message = render_to_string(
+            'orders/message_template.html',
+                {
+                'order':new_order
+            }
+        )
+
+        msg = EmailMessage(subject, message, settings.DEFAULT_FROM_EMAIL, [cd['email']])
+        msg.content_subtype = "html"
+
+        msg.send()
+
+        dict = {
+            'order':new_order
+        }
+        if not request.user.is_authenticated():
+            initial_reg_form = {
+                'fio':cd['fio'],
+                'email':cd['email'],
+                'telephone':cd['telephone']
+            }
+            reg_form = RegistrationForm(initial=initial_reg_form)
+
+            email_orders_count = Order.objects.filter(email=cd['email']).count()
+
+            dict = {
+                'order':new_order,
+                'reg_form':reg_form,
+                'email_orders_count':email_orders_count
+
+            }
+
+
+
+        return direct_to_template(
+            request,
+            'orders/checkout_2.html',
+            dict
+        )
+
+
+
+    return direct_to_template(
+        request,
+        'orders/checkout_1.html',
+            {
+            'fio':fio,
+            'email':email,
+            'telephone':telephone,
+            'addresses':addresses,
+            'stores':stores,
+            'registration_order_form':registration_order_form
+        }
+    )
