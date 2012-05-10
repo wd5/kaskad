@@ -86,7 +86,7 @@ class PagePic(BasePic):
 
 
 class MetaData(models.Model):
-    url = models.CharField(max_length=100, verbose_name=u'Адрес', help_text=u'Адрес страницы,например, "/your_address/"')
+    url = models.CharField(max_length=100, verbose_name=u'Адрес', help_text=u'Адрес страницы,например, "/your_address/"', unique=True)
     title = models.CharField(max_length=100, verbose_name=u'Заголовок')
     description = models.CharField(max_length=100, verbose_name=u'description', blank=True)
     keywords = models.CharField(max_length=100, verbose_name=u'keywords', blank=True)

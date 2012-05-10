@@ -16,6 +16,7 @@
 
 {% block center %}
         <div class="col">
+            <h2>Отзывы</h2>
             <div class="faq">
                 {% if is_successed %}
                     Благодарим за оставленный отзыв. Отзыв будет опубликован, после того как пройдет модерацию.
@@ -31,8 +32,6 @@
                 {% endif %}
 
             </div>
-        <h2>Отзывы</h2>
-            {% if reviews %}
             <div class="comments">
                 {% autopaginate reviews 10 %}
                 {% for item in reviews %}
@@ -42,10 +41,11 @@
                         </div>
                         <p>{{ item.text }}</p>
                     </div>
+                {% empty %}
+                    Отзывов пока нет
                 {% endfor %}
                 {% paginate %}
             </div>
-            {% endif %}
         </div>
 {% endblock %}
 

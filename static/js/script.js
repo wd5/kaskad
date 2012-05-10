@@ -9,10 +9,10 @@ $(function(){
 
     $('.shutter').toggle(
         function () {
-            $('.shutter_text').hide('slow');
+            $('.shutter_text').hide('fast');
         },
         function () {
-            $('.shutter_text').show('slow');
+            $('.shutter_text').show('fast');
         }
     );
 

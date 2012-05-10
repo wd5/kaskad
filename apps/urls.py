@@ -13,7 +13,6 @@ urlpatterns = patterns('',
 
     url(r'^$', 'apps.pages.views.index'),
 
-    url(r'^catalog/$', 'apps.pages.views.index'),
     url(r'^catalog/(?P<slug>[^/]+)/$', 'apps.catalog.views.show_category'),
     url(r'^catalog/[^/]+/(?P<slug>[^/]+)/comment/$', 'apps.catalog.views.show_comment_form'),
     url(r'^catalog/[^/]+/(?P<slug>[^/]+)/comment/(?P<node>[^/]+)/$', 'apps.catalog.views.show_comment_form'),

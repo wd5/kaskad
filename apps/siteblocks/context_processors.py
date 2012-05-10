@@ -10,34 +10,22 @@ def settings(request):
 
     if allsettings:
         try:
-            address = allsettings.get(name='address').value
+            contacts = allsettings.get(name='contacts').value
         except:
-            address = ''
-        try:
-            phonenum = allsettings.get(name='phonenumber').value
-        except:
-            phonenum = ''
-        try:
-            phonecode = allsettings.get(name='phonecode').value
-        except:
-            phonecode = ''
+            contacts = ''
         try:
             shuttertext = allsettings.get(name='shuttertext').value
         except:
             shuttertext = ''
         return {
-                'phonenum':phonenum,
-                'phonecode':phonecode,
+                'contacts':contacts,
                 'shuttertext':shuttertext,
-                'address': address,
                 'site_name': SITE_NAME,
             }
     else:
         return {
-                'phonenum':'',
-                'phonecode':'',
+                'contacts':'',
                 'shuttertext':'',
-                'address': '',
                 'site_name': SITE_NAME,
             }
 

@@ -22,7 +22,7 @@
                 {% autopaginate news 10 %}
                 {% for item in news %}
                     <div class="comment">
-                        <span class="comment_date">{{ item.date_add|date:"j E" }} в {{ item.date_add|date:"G:i" }}</span>
+                        <span class="comment_date">{{ item.date_add|date:"j E" }}</span>
                         <p>{{ item.text|safe }}</p>
                     </div>
                 {% endfor %}

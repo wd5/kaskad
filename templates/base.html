@@ -41,10 +41,7 @@
 		<span class="logo_note">общество с ограниченной ответственностью</span>
 		<span class="short_about">изготовление и монтаж котельного оборудования</span>
 		<div class="top_img"><img src="/static/img/paper_t.png" alt="" /></div>
-		<div class="contacts">
-			<div class="tel"><span>{{ phonecode }}</span>{{ phonenum }}</div>
-			<div class="adr">{{ address }}</div>
-		</div><!--/contacts-->
+        {{ contacts|safe }}
 
         {% block_menu_by_pages request.path 'header' %}
 

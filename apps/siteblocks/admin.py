@@ -26,7 +26,8 @@ class SettingsAdminForm(forms.ModelForm):
                 self.fields['value'].widget = Redactor(attrs={'cols': 120, 'rows': 10},)
 
 class SettingsAdmin(admin.ModelAdmin):
-    list_display = ('title','name','value',)
+    list_display = ('title','value',)
+    fields = ('title','value',)
     form = SettingsAdminForm
 
 class NewsAdminForm(forms.ModelForm):

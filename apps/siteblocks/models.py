@@ -24,6 +24,7 @@ class Settings(models.Model):
     name = models.CharField( 
         verbose_name = u'Служебное имя',
         max_length = 250,
+        unique = True,
     )
     value = models.TextField(
         verbose_name = u'Значение'
