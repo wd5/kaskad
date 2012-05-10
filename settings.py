@@ -19,7 +19,6 @@ INSTALLED_APPS += (
     'apps.faq',
     'apps.catalog',
     'apps.orders',
-
     'sorl.thumbnail',
     #'south',
     #'captcha',

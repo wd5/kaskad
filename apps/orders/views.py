@@ -322,7 +322,7 @@ def registration_order(request):
                 msg = EmailMessage(subject, message, settings.DEFAULT_FROM_EMAIL,[emailto])
                 msg.content_subtype = "html"
                 msg.send()
-            messageToUser = 'Спасибо за заказ. Номер вашего заказа <i>%s</i>. В ближайшее время с вами связжется наш менеджер.' % new_order.id
+            messageToUser = 'Спасибо за заказ. Номер вашего заказа №<i>%s</i>. В ближайшее время с вами свяжется наш менеджер.' % new_order.id
             response.content = messageToUser
             return response
         else:

@@ -563,9 +563,10 @@ a.price_lnk {
 	position: relative;
 	padding: 15px 0 0 100px;
 	min-height: 100px;
+	margin: 0 0 18px;
 }
 .cart_item_name, .cart_item_price, .cart_item_qty_btn, .cart_item_sum, .cart_del {
-	vertical-align: middle;
+	vertical-align: top;
 	margin-right: 40px;
 }
 .cart_item_name {
@@ -599,7 +600,7 @@ a.price_lnk {
 .cart_item_qty_btn {
 	position: absolute;
 	left: 400px;
-	top: 34px;
+	top: 10px;
 }
 .cart_item_qty_btn input:active, .cart_qty_modal_ok:active, .cart_qty_modal_cancel:active {
 	margin: 2px 0 0 0;
@@ -728,7 +729,7 @@ a.price_lnk {
 	position: absolute;
 	top: 0;
 	left: -300px;
-	width: 230px;
+	min-width: 230px;
 	background: #fefefe;
 	padding: 18px;
 	border: 3px solid #e9be7c;

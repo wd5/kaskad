@@ -28,7 +28,17 @@
                         {% endthumbnail %}
                         <div class="item_img_fr"></div>
                     </div>
-                    <div class="cart_item_name"><h3>{{ product.product.title }}</h3><p>Отапливаемая площадь 50-100 м2{% comment %}{{ product.product.description|safe }}{% endcomment %}</p></div>
+                    <div class="cart_item_name"><h3>{{ product.product.title }}</h3>
+
+                        {% if product.product.get_feature_values %}
+                            {% for item in product.product.get_feature_values %}
+                                {% if item.show_in_cart %}
+                                    <p>{{ item.feature.title }} - {{ item.value }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                    </div>
                     <div class="cart_item_price">{{ product.product.price }}</div>
                     <div class="cart_item_qty_btn"><input type="button" value="{{ product.count }}шт" name="{{ product.count }}" /></div>
                     <div class="cart_item_sum">{{ product.get_total }}</div>

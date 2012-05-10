@@ -152,6 +152,7 @@ class FeatureValue(models.Model):
     product = models.ForeignKey(Product, verbose_name=u'товар')
     feature = models.ForeignKey(Feature, verbose_name=u'характеристика')
     value = models.CharField(verbose_name=u'значение характеристики', max_length=150)
+    show_in_cart = models.BooleanField(verbose_name=u'показывать характеристику к корзине', default=False)
 
     def __unicode__(self):
         return u'%s' % ''
