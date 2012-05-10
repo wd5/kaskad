@@ -2,7 +2,7 @@
 DATABASE_NAME = u'kaskad'
 PROJECT_NAME = u'kaskad'
 SITE_NAME = u'КАСКАД'
-DEFAULT_FROM_EMAIL = u'support@kaskad.octweb.ru'
+DEFAULT_FROM_EMAIL = u'support@kas-kad.octweb.ru'
 
 from config.base import *
 

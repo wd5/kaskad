@@ -38,6 +38,8 @@ def block_cart(context):
     except OrderProduct.DoesNotExist:
         popular_products = False
 
+    popular_product = False
+
     if popular_products:
         try:
             popular_product = Product.objects.get(id=popular_products[0]['product'])
