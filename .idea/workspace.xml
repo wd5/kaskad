@@ -2,116 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ce8e9c6-0b1f-4ce7-a314-29f30ee5059e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/cart.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/category.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/faq.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/modal_form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/news.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/product.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/css/ie.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTN57F.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTN57F.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTN57F.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTN57F.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTN77F_W.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTN77F_W.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTN77F_W.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTN77F_W.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS55F_W.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS55F_W.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS55F_W.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS55F_W.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS56F_W.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS56F_W.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS56F_W.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS56F_W.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS75F_W.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS75F_W.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS75F_W.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/fonts/PTS75F_W.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/images/kotel.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/images/kotel_zl.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/images/kotel_zm.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/images/otel.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/images/otel_zl.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/images/otel_zm.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/_g.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/art_rub.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/bg_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/bg_menu.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/bg_menu_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/c_close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/c_komment.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/c_menu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/c_price.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/c_rub.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/cart_rub.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/footer_t.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/g.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/g_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/g_menu.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/g_menu_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/h_g.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/hutter_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/hutter_ring.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/hutter_t.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/ic_comment.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/ic_del.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/ic_menu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/ic_price.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/ic_rub.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/ipes.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/item_fr_zl.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/item_fr_zm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/item_fr_zs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/kotel_text_zl.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/kotel_text_zm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/kotel_text_zs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/kotel_zl.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/kotel_zm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/kotel_zs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/modul_heating.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/o_cart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/o_cart_act.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/octoberweb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/odul_heating.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/ogo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/otel_text_zl.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/otel_text_zm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/otel_text_zs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/otel_zl.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/otel_zm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/otel_zs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/oven.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/oven_bath.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/paper_t.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/pipes.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/shutter_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/shutter_ring.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/shutter_t.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/tem_fr.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/tem_fr_zl.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/tem_fr_zm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/to_cart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/to_cart_act.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/img/ven.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/js/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/js/masonry.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/js/modulargrid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/js/placeholder.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/static/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Верстка/text-page.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/catalog/models.py" afterPath="$PROJECT_DIR$/apps/catalog/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/orders/views.py" afterPath="$PROJECT_DIR$/apps/orders/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/orders/cart_detail.html" afterPath="$PROJECT_DIR$/templates/orders/cart_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/orders/message_template.html" afterPath="$PROJECT_DIR$/templates/orders/message_template.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/catalog/show_product.html" afterPath="$PROJECT_DIR$/templates/catalog/show_product.html" />
     </list>
     <ignored path="kaskad.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -135,10 +26,19 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/script.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="13" selection-start="652" selection-end="652" vertical-scroll-proportion="0.4861945">
+                <state line="15" column="9" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="show_product.html" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/templates/catalog/show_product.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="29" column="65" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.45611867">
                   <folding />
                 </state>
               </provider>
@@ -181,7 +81,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/urls.py" />
         <option value="$PROJECT_DIR$/apps/orders/forms.py" />
         <option value="$PROJECT_DIR$/templates/orders/order_form.html" />
         <option value="$PROJECT_DIR$/apps/orders/templatetags/orders_extras.py" />
@@ -197,6 +96,7 @@
         <option value="$PROJECT_DIR$/static/css/style.css" />
         <option value="$PROJECT_DIR$/../uwsgi.xml" />
         <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/templates/catalog/show_product.html" />
       </list>
     </option>
   </component>
@@ -311,6 +211,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="orders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kaskad" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kaskad" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faq" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -828,13 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/catalog/show_product.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="43" selection-start="2725" selection-end="2725" vertical-scroll-proportion="0.33374536">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/orders/cart_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="29" selection-start="1217" selection-end="1217" vertical-scroll-proportion="0.48084053">
@@ -884,15 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../config/production.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="26" selection-start="661" selection-end="661" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/production.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="10" selection-start="35" selection-end="35" vertical-scroll-proportion="0.036014404">
@@ -907,9 +809,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/faq/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="13" selection-start="652" selection-end="652" vertical-scroll-proportion="0.4861945">
+        <state line="15" column="9" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/catalog/show_product.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="65" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.45611867">
           <folding />
         </state>
       </provider>

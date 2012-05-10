@@ -13,9 +13,7 @@
             <h1>{{ product.title }}</h1>
             <div class="imgs left">
 
-                {% if product.image.width > 1000 %}
-
-                    {% thumbnail product.image "1000" as big %}
+                    {% thumbnail product.image "1000" upscale=0 as big %}
                         {% thumbnail product.image "234x209" crop="center" as im %}
                         <a class="fancybox product_img" rel="album{{product.id}}" href="{{ big.url }}">
                             <div class="item_img_zl">
@@ -26,24 +24,10 @@
                          {% endthumbnail %}
                     {% endthumbnail %}
 
-                {% else %}
-
-                    {% thumbnail product.image "234x209" crop="center" as im %}
-                    <a class="fancybox product_img" rel="album{{product.id}}" href="{{ product.image.url }}">
-                        <div class="item_img_zl">
-                            <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
-                            <div class="item_img_fr_zl"></div>
-                        </div>
-                    </a>
-                    {% endthumbnail %}
-
-                {% endif %}
-
                 {% if product.get_attached_photos %}
                     {% for photo in product.get_attached_photos %}
 
-                    {% if photo.image.width > 1000 %}
-                        {% thumbnail photo.image "1000" as big %}
+                        {% thumbnail photo.image "1000" upscale=0 as big %}
                             {% thumbnail photo.image "109x109" crop="center" as im %}
                             <a class="fancybox" rel="album{{product.id}}" href="{{ big.url }}">
                                 <div class="item_img_zm">
@@ -53,19 +37,6 @@
                             </a>
                             {% endthumbnail %}
                         {% endthumbnail %}
-
-                    {% else %}
-
-                        {% thumbnail photo.image "109x109" crop="center" as im %}
-                        <a class="fancybox" rel="album{{product.id}}" href="{{ photo.image.url }}">
-                            <div class="item_img_zm">
-                                <img src="{{ im.url }}" alt="" height="{{ im.height }}" width="{{ im.width }}" />
-                                <div class="item_img_fr_zm"></div>
-                            </div>
-                        </a>
-                        {% endthumbnail %}
-
-                    {% endif %}
 
                     {% endfor %}
                 {% endif %}
