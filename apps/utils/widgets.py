@@ -27,7 +27,7 @@ class Redactor(forms.Textarea):
         $(document).ready(
             function()
             {
-                $('#id_%s').redactor({ focus: true,toolbar: '%s', imageUpload: '/upload_img/', fileUpload: '/upload_file/' });
+                $('#id_%s').redactor({ focus: true, toolbar: '%s', imageUpload: '/upload_img/', fileUpload: '/upload_file/', lang: 'ru' });
             }
         );
         </script>''' % (name,self.toolbar))
