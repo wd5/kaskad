@@ -167,7 +167,7 @@ class Attached_photo(models.Model):
     order = models.IntegerField(u'порядок сортировки', help_text=u'Чем больше число, тем выше располагается элемент', default=10)
 
     def __unicode__(self):
-            return self.product.title
+        return self.product.title
 
     class Meta:
         ordering = ['-order']

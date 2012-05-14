@@ -4,7 +4,7 @@ from django.conf.urls.defaults import patterns, include, url
 urlpatterns = patterns('',
 
     url(r'^faq/$','apps.faq.views.questions_list'),
-    url(r'^faq/(?P<action>[^/]+)/$$','apps.faq.views.questions_list'),
+    url(r'^faq/(?P<action>[^/]+)/$','apps.faq.views.questions_list'),
 
     url(r'^news/$', 'apps.siteblocks.views.news_list'),
 

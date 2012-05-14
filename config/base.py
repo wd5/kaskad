@@ -24,7 +24,6 @@ STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 ADMIN_MEDIA_ROOT = os.path.join(ROOT_PATH, 'static/admin')
 
-
 SECRET_KEY = 'n56Uidrtu}ig%#hgjh$pbdvwlju7b'
 
 TEMPLATE_LOADERS = (

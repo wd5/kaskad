@@ -32,7 +32,7 @@ class SettingsAdmin(admin.ModelAdmin):
 
 class NewsAdminForm(forms.ModelForm):
     text = forms.CharField(
-        widget=RedactorMini(attrs={'cols': 170, 'rows': 30}),
+        widget=RedactorMini(attrs={'rows': 30}),
         #label = u'анонс',
     )
     class Meta:

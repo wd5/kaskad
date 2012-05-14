@@ -12,6 +12,9 @@ table,caption,tbody,tfoot,thead,tr,th,td {
 	outline:0;
 	vertical-align:baseline;
 }
+textarea {
+	resize: none;
+}
 li {list-style:none}
 /*/reset*/
 
@@ -95,7 +98,7 @@ a {color: #0a80be;}
 a:hover {color: #906}
 
 h1 {
-	font: bold 30px/30px 'PT Sans Narrow', sans-serif;
+	font: bold 30px/36px 'PT Sans', sans-serif;
 	margin: 0px 0 32px 0;
 }
 h2 {
@@ -161,8 +164,8 @@ h3 {
 .contacts {
 	position: absolute;
 	top: 2px;
-	right: 78px;
-	width: 172px;
+	left: 740px;
+	max-width: 230px;
 }
 .tel {
 	font-size:30px;
@@ -212,6 +215,9 @@ li._toright {
 	background: url('../img/ic_menu.png') 0px 50% no-repeat;
 	padding-left: 20px;
 }
+.menu_current a {
+	text-decoration: none;
+}
 /*menu-end*/
 /*shutter*/
 .shutter, .news {
@@ -249,6 +255,7 @@ li._toright {
 	height: 11px;
 }
 .shutter_ring {
+	cursor: pointer;
 	position: absolute;
 	bottom: -23px;
 	left: 50%;
@@ -291,7 +298,7 @@ li._toright {
 	width: 298px;
 	margin: 0 30px 0 0;
 }
-.item_t_img {
+.item_t_img, .item_t_img a {
 	position: relative;
 	height: 295px;
 }
@@ -308,7 +315,7 @@ li._toright {
 .item_t a, .cat_item a, .item a {
 	position: relative;
 	z-index: 5;
-	font: bold 24px/28px 'PT Sans Narrow', sans-serif;
+	font: bold 24px/24px 'PT Sans Narrow', sans-serif;
 }
 .item_t a {
 	display: block;
@@ -343,6 +350,12 @@ li._toright {
 	left: 0;
 	top: 0;
 }
+a.cat_item_tizer_lnk {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
 .cat_item p {
 	margin-top: 10px;
 	color: #2d2d2d;
@@ -370,7 +383,8 @@ li._toright {
 .item_img_zm {
 	margin: 0 12px 0 0;
 }
-.item_img_fr {
+a.item_img_fr {
+	display: block;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -456,10 +470,10 @@ li._toright {
 /*comment*/
 .comments {
 	position: relative;
-	font-size: 13px;
+	font-size: 14px;
 }
 .comment {
-	margin: 18px 0 0 36px;
+	margin: 18px 0 0 0;
 }
 .comments h2 {
 	display: inline-block;
@@ -495,7 +509,7 @@ li._toright {
 	background: #f1f1f0;
 	border: 1px solid #b3b3b3;
 	border-radius: 5px;
-	padding: 0 0 18px 18px;
+	padding: 0 0 12px 10px;
 	margin: 18px 18px 18px 0px;
 }
 .comment_answer {
@@ -767,7 +781,7 @@ a.price_lnk {
 /*modal_form*/
 .mod_form {
 	width: 300px;
-	background: #eeeeee;
+	background: #ffffff;
 	padding: 10px 35px 10px 15px;
 	border-radius: 5px;
 }
@@ -776,7 +790,6 @@ a.price_lnk {
 	left: 0;
 	top: 0;
 	width: 100%;
-	resize: none;
 }
 .mod_form label {
 	display: block;

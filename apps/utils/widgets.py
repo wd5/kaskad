@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 
 
 class Redactor(forms.Textarea):
-    toolbar = u'classic' #'mini'
+    toolbar = u'default' #'mini'
     class Media:
         js = (
             '/static/js/jquery.js',
@@ -27,7 +27,7 @@ class Redactor(forms.Textarea):
         $(document).ready(
             function()
             {
-                $('#id_%s').redactor({ focus: true,toolbar: '%s' });
+                $('#id_%s').redactor({ focus: true,toolbar: '%s', imageUpload: '/upload_img/', fileUpload: '/upload_file/' });
             }
         );
         </script>''' % (name,self.toolbar))

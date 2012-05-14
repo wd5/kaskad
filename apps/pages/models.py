@@ -38,7 +38,6 @@ class Page(MPTTModel):
     def __unicode__(self):
         return u'%s (%s)' % (self.title, self.get_absolute_url())
 
-
     def save(self, **kwargs):
         # add the first and the last slash if it needed
         if not self.url.endswith('/'):
@@ -48,7 +47,7 @@ class Page(MPTTModel):
 
         # remove the first and the last space
         self.title = self.title.strip()
- 
+
         super(Page, self).save(**kwargs)
 
 

@@ -12,18 +12,17 @@ except ImportError:
     import Image
 import md5
 import datetime
-from django.http import HttpResponseRedirect, HttpResponse
 
 def handle_uploaded_file(f, filename, folder):
     name, ext = os.path.splitext(translify(filename).replace(' ', '_'))
     hashed_name=md5.md5(name+datetime.datetime.now().strftime("%Y%m%d%H%M%S")).hexdigest()
-    path_name = settings.MEDIA_ROOT + 'uploads/' + folder + hashed_name + ext
+    path_name = settings.MEDIA_ROOT + '/uploads/' + folder + hashed_name + ext
     destination = open(path_name, 'wb+')
 
     for chunk in f.chunks():
         destination.write(chunk)
     destination.close()
-    return '/static/uploads/'+ folder + hashed_name + ext
+    return '/media/uploads/'+ folder + hashed_name + ext
 
 @csrf_exempt
 def upload_img(request):
@@ -38,7 +37,8 @@ def upload_img(request):
             if (imageSize[0] > size[0]) or  (imageSize[1] > size[1]):
                 im.thumbnail(size, Image.ANTIALIAS)
                 im.save(settings.ROOT_PATH + url, "JPEG", quality = 100)
-            return http.HttpResponse(url)
+            #return http.HttpResponse(url)
+            return http.HttpResponse('<img src="%s" />' % url)
 
         else:
             return http.HttpResponse('error')
@@ -117,6 +117,6 @@ def upload_pricelist(request):
             conf = Settings.objects.get(name = 'pricelistpath')
             conf.value = newname
             conf.save()
-            return HttpResponseRedirect('/admin/')
+            return http.HttpResponseRedirect('/admin/')
     else:
-        return HttpResponse('403 Forbidden. Authentication Required!')
+        return http.HttpResponse('403 Forbidden. Authentication Required!')

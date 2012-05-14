@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django import forms
 from apps.pages.models import Page, MetaData, PageDoc, PagePic
-from apps.utils.widgets import Redactor, AdminImageWidget
+from apps.utils.widgets import Redactor, AdminImageWidget, RedactorMini
 from sorl.thumbnail.admin import AdminImageMixin
 from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
@@ -23,7 +23,7 @@ class PagePicInline(AdminImageMixin, admin.TabularInline):
 
 class PageAdminForm(forms.ModelForm):
     content = forms.CharField(
-        widget=Redactor(attrs={'cols': 170, 'rows': 20}),
+        widget=Redactor(attrs={'rows': 30}),
         label = u'Текст',
     )
     def __init__(self, *args, **kwargs):
@@ -46,10 +46,10 @@ class PageAdmin(AdminImageMixin, MPTTModelAdmin):
     #prepopulated_fields = {'slug': ('title',)}
     list_select_related = True
     form = PageAdminForm
-    #inlines = [
-    #    PageDocInline,
-    #    PagePicInline,
-    #]
+    inlines = [
+        PageDocInline,
+        PagePicInline,
+    ]
 
 class MetaDataAdmin(admin.ModelAdmin):
     list_display=('url', 'title',)
