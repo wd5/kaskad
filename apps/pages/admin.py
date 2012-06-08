@@ -33,6 +33,12 @@ class PageAdminForm(forms.ModelForm):
     class Meta:
         model = Page
 
+    class Media:
+        js = (
+            '/static/js/jquery.js',
+            '/static/js/pages_hide_picblock.js'
+            )
+
 class PageAdmin(AdminImageMixin, MPTTModelAdmin):
     list_display = ('title', 'url', 'order', 'is_published',)
     list_display_links = ('title', 'url',)
@@ -47,7 +53,7 @@ class PageAdmin(AdminImageMixin, MPTTModelAdmin):
     list_select_related = True
     form = PageAdminForm
     inlines = [
-        PageDocInline,
+        #PageDocInline,
         PagePicInline,
     ]
 

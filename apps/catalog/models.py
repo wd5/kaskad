@@ -152,7 +152,7 @@ class FeatureValue(models.Model):
     product = models.ForeignKey(Product, verbose_name=u'товар')
     feature = models.ForeignKey(Feature, verbose_name=u'характеристика')
     value = models.CharField(verbose_name=u'значение характеристики', max_length=150)
-    show_in_cart = models.BooleanField(verbose_name=u'показывать характеристику к корзине', default=False)
+    show_in_cart = models.BooleanField(verbose_name=u'показывать характеристику в корзине', default=False)
 
     def __unicode__(self):
         return u'%s' % ''
@@ -199,17 +199,24 @@ class Comment(MPTTModel):
     def __unicode__(self):
         return u'%s - %s' % (self.sender_name,self.date_create)
 
+def image_path_Review(instance, filename):
+    return os.path.join('images','reviews', translify(filename).replace(' ', '_') )
+
 class Review(models.Model):
-    sender_name = models.CharField(verbose_name=u'имя отправителя', max_length=60)
-    date_create = models.DateTimeField(u'дата отзыва', default=datetime.datetime.now)
-    text = models.TextField(verbose_name=u'текст отзыва')
-    email = models.CharField(verbose_name=u'E-mail',max_length=75)
-    is_moderated = models.BooleanField(verbose_name=u'публиковать отзыв', default=False)
+    title = models.CharField(verbose_name=u'название отзыва', max_length=255)
+    image = ImageField(upload_to=image_path_Review, verbose_name=u'изображение')
+    is_published = models.BooleanField(verbose_name=u'опубликовано', default=True)
+    order = models.IntegerField(u'порядок сортировки', help_text=u'Чем больше число, тем выше располагается элемент', default=10)
+
+    objects = PublishedManager()
 
     def __unicode__(self):
-        return u'Отзыв от %s' % self.date_create
+        return self.title
 
     class Meta:
+        ordering = ['-order']
         verbose_name =_(u'review')
         verbose_name_plural =_(u'reviews')
-        ordering = ['-date_create']
+
+    def get_src_image(self):
+        return self.image.url

@@ -16,39 +16,25 @@
 
 {% block center %}
         <div class="col">
-            <h2>Отзывы</h2>
-            <div class="faq">
-                {% if is_successed %}
-                    Благодарим за оставленный отзыв. Отзыв будет опубликован, после того как пройдет модерацию.
-                {% else %}
-                    <form action="" method="POST" class="form_faq">
-                        <div class="input">{{ form.sender_name }}{{ form.sender_name.errors }}</div>
-                        <div class="input">{{ form.email }}{{ form.email.errors }}</div>
-                        <div class="textarea">{{ form.text }}{{ form.text.errors }}</div>
-                        <div class="submit">
-                            <div><input type="submit" value="Оставить отзыв" /></div>
-                        </div>
-                    </form>
-                {% endif %}
-
-            </div>
-            <div class="comments">
+        <h1>Отзывы о продукции</h1>
+            <div class="recall">
                 {% autopaginate reviews 10 %}
-                {% for item in reviews %}
-                    <div class="comment">
-                        <div class="comment_who">
-                            {{ item.sender_name }} <span class="comment_date">{{ item.date_create|date:"j E" }} в {{ item.date_create|date:"H:i" }}</span>
-                        </div>
-                        <p>{{ item.text }}</p>
-                    </div>
-                {% empty %}
-                    Отзывов пока нет
-                {% endfor %}
+                    {% for item in reviews %}
+                        {% thumbnail item.image "1000" upscale=0 as big %}
+                            {% thumbnail item.image "124x177" crop="center" as im %}
+                                <a href="{{ big.url }}" rel="reviews" class="recall_lnk fancybox"><span><img src="{{ im.url }}" alt="" width="{{ im.width }}" height="{{ im.height }}" /><span class="recall_sh"></span></span>{{ item.title }}</a>
+                            {% endthumbnail %}
+                        {% endthumbnail %}
+                    {% empty %}
+                        Отзывов пока нет
+                    {% endfor %}
                 {% paginate %}
             </div>
         </div>
 {% endblock %}
 
 {% block right %}
+    {% block_cart %}
+    {% block_price %}
     {% block_servicies %}
 {% endblock %}

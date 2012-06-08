@@ -28,7 +28,7 @@ class AttachedPhotoInline(AdminImageMixin,admin.TabularInline):
     model = Attached_photo
 
 class ProductAdminForm(forms.ModelForm):
-    description = forms.CharField(widget=RedactorMini(attrs={'cols': 100, 'rows': 7}))
+    description = forms.CharField(widget=Redactor(attrs={'cols': 100, 'rows': 7}))
     description.label=u'Описание'
 
     class Meta:
@@ -64,12 +64,12 @@ class CommentAdmin(MPTTModelAdmin):
     search_fields = ('product__title','text','sender_name',)
     list_select_related = True
 
-class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('id','sender_name','date_create','is_moderated',)
-    list_display_links = ('id','sender_name','date_create',)
-    list_editable = ('is_moderated',)
-    list_filter = ('is_moderated','sender_name','date_create',)
-    search_fields = ('text','sender_name',)
+class ReviewAdmin(AdminImageMixin,admin.ModelAdmin):
+    list_display = ('id','title','order','is_published',)
+    list_display_links = ('id','title',)
+    list_editable = ('order','is_published',)
+    list_filter = ('is_published',)
+    search_fields = ('title',)
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Feature, FeatureAdmin)

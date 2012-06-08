@@ -10,7 +10,15 @@
 
 {% block center %}
     <div class="text col">
-    {{ page.content|safe }}
+        <h1>{{ page.title }}</h1>
+        {{ page.content|safe }}
+        {% for image in page.get_images %}
+            {% thumbnail image.file "1000" upscale=0 as big %}
+                {% thumbnail image.file "124x177" crop="center" as im %}
+                    <a href="{{ big.url }}" rel="reviews" class="recall_lnk fancybox"><span><img src="{{ im.url }}" alt="" width="{{ im.width }}" height="{{ im.height }}" /><span class="recall_sh"></span></span>{{ image.title }}</a>
+                {% endthumbnail %}
+            {% endthumbnail %}
+        {% endfor %}
     </div><!-- /text -->
 {% endblock %}
 

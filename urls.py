@@ -9,9 +9,6 @@ from apps.urls import urlpatterns as apps_urlpatterns
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-
     # Admin
     (r'^admin/upload_pricelist/$', 'views.upload_pricelist'),
     url(r'^admin/', include(admin.site.urls)),
@@ -20,6 +17,9 @@ urlpatterns = patterns('',
      #Redactor
     (r'^upload_img/$', 'views.upload_img'),
     (r'^upload_file/$', 'views.upload_file'),
+
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 
 )
 

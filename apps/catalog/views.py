@@ -4,8 +4,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.catalog.models import Product, Category, Review, Comment
-from django.views.generic import DetailView, FormView, CreateView
-from apps.catalog.forms import ReviewForm, CommentForm
+from django.views.generic import DetailView, FormView, CreateView, ListView
+from apps.catalog.forms import CommentForm
 from apps.utils.views import CreateViewMixin
 from django.shortcuts import redirect, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
@@ -44,24 +44,11 @@ class ShowProduct(DetailView):
 
 show_product = ShowProduct.as_view()
 
-class ShowReviews(CreateViewMixin, CreateView):
-    form_class = ReviewForm
+class ShowReviews(ListView):
+    model = Review
     template_name = 'catalog/show_reviews.html'
-    context_object_name = 'form'
-    success_url = '/reviews/thanks/'
-
-    def form_valid(self, form):
-        Review.objects.create(**form.cleaned_data)
-        return redirect(self.get_success_url())
-
-    def get_context_data(self, **kwargs):
-        context = super(ShowReviews, self).get_context_data(**kwargs)
-        if self.kwargs.get('action', None) == 'thanks':
-            context['is_successed'] = True
-        else:
-            context['is_successed'] = False
-        context['reviews'] = Review.objects.filter(is_moderated=True)
-        return context
+    context_object_name = 'reviews'
+    queryset = model.objects.published()
 
 reviews_list = ShowReviews.as_view()
 
@@ -151,6 +138,25 @@ def do_comment(request):
             comment_form.save()
             return HttpResponse('success')
         else:
+            product_set = Product.objects.filter(pk=product_id)
+            comment_form.fields['product'].queryset = product_set
+
+
+            id_parent = data['parent']
+            try:
+                id_parent = int(id_parent)
+            except:
+                id_parent = False
+
+            if id_parent:
+                try:
+                    parent = Comment.objects.filter(id=id_parent)
+                    comment_form.fields['parent'].queryset = parent
+                except Comment.DoesNotExist:
+                    return HttpResponseBadRequest()
+            else:
+                comment_form.fields['parent'].queryset = Comment.objects.extra(where=['1=0'])
+
             comment_form_html = render_to_string(
                 'catalog/comment_form.html',
                     {'form': comment_form}

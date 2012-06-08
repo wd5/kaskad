@@ -20,7 +20,7 @@ li {list-style:none}
 
 /*fonts*/
 @font-face {font-family: 'PT Sans';
-	src: url('../fonts/PTS55F_W.eot') format("embedded-opentype"); 
+	src: url('../fonts/PTS55F_W.eot'); 
 	src:
 		local('PT Sans'),
 		url('../fonts/PTS55F_W.woff') format('woff'),
@@ -29,7 +29,7 @@ li {list-style:none}
 
 @font-face {font-family: 'PT Sans'; 
 	font-style: italic;
-	src: url('../fonts/PTS56F_W.eot') format("embedded-opentype"); 
+	src: url('../fonts/PTS56F_W.eot'); 
 	src: 
 		local('PT Sans Italic'),
 		url('../fonts/PTS56F_W.woff') format('woff'),
@@ -37,7 +37,7 @@ li {list-style:none}
 		url('../fonts/PTS56F_W.svg#PTSans-Italic') format('svg');}
 
 @font-face {font-family: 'PT Sans';
-	src: url('../fonts/PTS75F_W.eot') format("embedded-opentype");
+	src: url('../fonts/PTS75F_W.eot');
 	font-style: normal;
 	font-weight: bold; 
 	src:
@@ -47,7 +47,7 @@ li {list-style:none}
 		url('../fonts/PTS75F_W.svg#PTSans-Bold') format('svg');}
 
 @font-face {font-family: 'PT Sans Narrow';
-	src: url('../fonts/PTN57F.eot') format("embedded-opentype");
+	src: url('../fonts/PTN57F.eot');
 	font-style: normal;
 	src: 
 		local('PT Sans Narrow'),
@@ -56,7 +56,7 @@ li {list-style:none}
 		url('../fonts/PTN57F.svg#PTSans-Narrow') format('svg');}
 
 @font-face {font-family: 'PT Sans Narrow';
-	src: url('../fonts/PTN77F_W.eot') format("embedded-opentype");
+	src: url('../fonts/PTN77F_W.eot');
 	font-style: normal;
 	font-weight: bold;
 	src: 
@@ -75,19 +75,21 @@ body {
 }
 
 .wrapper {
-	margin: 0 auto;
-	width: 978px;
-	padding: 0 18px 0;
+	margin: -6px auto 0;
+	padding-top: 6px;
+	width: 996px;
+	overflow: hidden;
+	position: relative;
 }
 .page {
-	margin-right: -18px;
+	padding: 0 6px 0 12px;
 }
 .h_g {
 	position: relative;
 	z-index: 10;
 	width: 100%;
-	min-width: 1014px;
-	background: url('../img/h_g.png') 0 0 repeat-x;
+	min-width: 996px;
+	background: url('../img/h_g.png') 0 0 repeat-x transparent;
 	height: 12px;
 }
 /*.page {padding: 0 6px 0 12px;}*/
@@ -200,7 +202,7 @@ h3 {
 }
 .menu li {
 	display: inline-block;
-	margin: 10px 30px 0 0;
+	margin: 10px 26px 0 0;
 }
 .menu li a {
 	font-size: 18px;
@@ -208,12 +210,13 @@ h3 {
 	color: #ffffff;
 }
 li._toright {
-	margin: 10px 0 0 30px;
+	margin: 10px 0 0 0;
 	float: right;
 }
 .menu_price {
 	background: url('../img/ic_menu.png') 0px 50% no-repeat;
 	padding-left: 20px;
+	margin-right: 26px;
 }
 .menu_current a {
 	text-decoration: none;
@@ -292,7 +295,8 @@ li._toright {
 
 /*main_t*/
 .main_t {
-	margin: 36px 0 0;
+	font-size: 0;
+	margin: 36px -10px 0 0;
 }
 .item_t {
 	width: 298px;
@@ -653,6 +657,45 @@ a.price_lnk {
 	margin: 36px 0 0;
 }
 /*/cart-end*/
+/*recall*/
+.recall {
+	font-size: 0;
+	line-height: 0;
+	letter-spacing: -1px;
+}
+.recall_lnk {
+	display: inline-block;
+	vertical-align: top;
+	width: 180px;
+	margin: 0 0 24px 28px;
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: normal;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+}
+.recall_lnk:hover {
+	color: #000;
+}
+.recall_lnk span {
+	display: block;
+	position: relative;
+	margin: 0 auto 8px;
+	width: 132px;
+	height: 181px;
+	overflow: hidden;
+}
+span.recall_sh {
+	display: block;
+	position: absolute;
+	height: 181px;
+	width: 132px;
+	left: 0;
+	top: 0;
+	background: url(../img/recall_sh.png) 0 0 no-repeat;
+}
+/*/recall*/
 /*right*/
 .right {
 	display: inline-block;
@@ -752,6 +795,9 @@ a.price_lnk {
 .cart_qty_modal p {
 	margin-bottom: 10px;
 }
+.cart_qty_modal div {
+	text-align: center;
+}
 .cart_qty_modal_text {
 	height: 16px;
 	width: 30px;
@@ -799,7 +845,7 @@ a.price_lnk {
 /*/modal_form*/
 /*texts*/
 .text {
-	margin: 20px 36px 20px 0;
+	margin: 20px 12px 20px 0;
 }
 .text p {margin-bottom:9px}
 .text ul, .text ol {margin:0 0 18px 36px}

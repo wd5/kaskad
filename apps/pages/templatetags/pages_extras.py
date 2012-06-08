@@ -31,7 +31,7 @@ def block_menu_by_pages(url,position):
         currentM = u'/'
 
     try:
-        pages = Page.objects.filter(parent__isnull=True,is_published=True)
+        pages = Page.objects.filter(parent__isnull=True, is_published=True, is_at_menu=True)
     except Page.DoesNotExist:
         pages = False
 

@@ -123,7 +123,7 @@ RTOOLBAR['default'] =
 	{
 		title: RLANG.file,
 		func: 'showFile'
-	},	
+	},
 	table: 					
 	{ 
 		title: RLANG.table,
@@ -205,7 +205,13 @@ RTOOLBAR['default'] =
 		exec: 'inserthorizontalrule', 
 		name: 'horizontalrule', 
 		title: RLANG.horizontalrule
-	},		
+	},
+    removeformat:
+    {
+        exec: 'removeformat',
+        name: 'removeformat',
+        title: RLANG.removeformat
+    },
 	fullscreen:
 	{
 		title: RLANG.fullscreen,

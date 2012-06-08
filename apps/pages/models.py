@@ -14,8 +14,9 @@ class Page(MPTTModel):
     url = models.CharField(max_length=200, verbose_name=u'Адрес', unique=True, help_text=u'Адрес страницы на латинице. Например, "/your_address/"')
     parent = TreeForeignKey('self', verbose_name=u'Родительская страница', related_name='children', blank=True, null=True, on_delete=models.SET_NULL)
     content = models.TextField(verbose_name=u'Содержимое страницы')
-    order = models.IntegerField(verbose_name=u'Порядок сортировки',default=10)
+    order = models.IntegerField(verbose_name=u'Порядок сортировки',default=10, help_text=u'Чем больше число, тем ниже располагается элемент')
 
+    is_at_menu = models.BooleanField(verbose_name=u'Отображать в меню', default = False)
     is_published = models.BooleanField(verbose_name=u'Опубликовано', default = True)
     template = models.CharField(verbose_name=u'шаблон', max_length=100, editable=False, default=u'default.html')
 
@@ -37,6 +38,9 @@ class Page(MPTTModel):
 
     def __unicode__(self):
         return u'%s (%s)' % (self.title, self.get_absolute_url())
+
+    def get_images(self):
+        return self.pagepic_set.all()
 
     def save(self, **kwargs):
         # add the first and the last slash if it needed
@@ -74,8 +78,8 @@ class PagePic(BasePic):
     )
 
     class Meta:
-        verbose_name = u'картинка'
-        verbose_name_plural = u'картинки'
+        verbose_name = u'изображение'
+        verbose_name_plural = u'лицензии и сертификаты'
 
     def __unicode__(self):
         return u'%s' % self.title
